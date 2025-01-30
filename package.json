@@ -62,7 +62,6 @@
         "zone.js": "~0.14.3"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "^17.2.2",
         "@angular/cli": "^17.3.11",
         "@angular/compiler-cli": "^17.2.0",
         "@ionic/angular-toolkit": "^12.1.1",
