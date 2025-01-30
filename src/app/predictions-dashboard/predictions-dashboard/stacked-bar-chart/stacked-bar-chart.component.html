@@ -1,0 +1,16 @@
+<div class="prediction-container">
+  <div class="chart-container" #chartContainer>
+    <h2>Pipeline Success Prediction by User</h2>
+    <!-- Chart will be rendered here -->
+  </div>
+
+  <div class="prediction-insights">
+    <h3>Prediction Insights</h3>
+    <div *ngIf="predictionInsights">
+      <p><strong>Predicted Average Build Duration:</strong> {{ predictionInsights?.averageDuration }}</p>
+      <p><strong>Predicted Success Probability:</strong> {{ predictionInsights?.successProbability }}</p>
+      <p><strong>Next Build Time Prediction:</strong> {{ predictionInsights?.nextBuildTime }}</p>
+    </div>
+    <button (click)="refreshPage()">Refresh Predictions</button>
+  </div>
+</div>

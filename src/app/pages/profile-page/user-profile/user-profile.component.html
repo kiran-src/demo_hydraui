@@ -1,0 +1,264 @@
+<div class="row">
+    <div class="col-xxxl-3">
+        <!-- Profile Intro Card -->
+        <mat-card
+            class="qot-card profile-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mt-0 mb-0">Profile Intro</h5>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="user d-flex align-items-center">
+                    <div class="image">
+                        <img src="assets/images/profile.jpg" class="rounded-circle" alt="profile-image" />
+                    </div>
+                    <div class="title">
+                        <span class="d-block fw-medium">Themba Nkosi</span>
+                        <span class="d-block text-body">themba.nkosi&#64;example.com</span>
+                    </div>
+                </div>
+                <span class="sub-title d-block fw-medium">About Me</span>
+                <p>
+                    Recent B.Optom graduate from the University of KwaZulu-Natal, passionate about pediatric optometry
+                    and contact lens fitting. Seeking an internship opportunity to apply my theoretical knowledge in a
+                    practical setting. Fluent in English, isiZulu, and Afrikaans, enabling effective communication with
+                    diverse patient populations.
+                </p>
+                <h5>Social Profile</h5>
+                <div class="socials-link">
+                    <a
+                        href="https://www.linkedin.com/"
+                        target="_blank"
+                        class="linkedin d-inline-block text-center position-relative rounded-circle"
+                        aria-label="LinkedIn Profile"
+                    >
+                        <i class="ri-linkedin-fill"></i>
+                    </a>
+                    <a
+                        href="https://www.researchgate.net/"
+                        target="_blank"
+                        class="researchgate d-inline-block text-center position-relative rounded-circle"
+                        aria-label="ResearchGate Profile"
+                    >
+                        <i class="ri-book-fill"></i>
+                    </a>
+                    <a
+                        href="mailto:themba.nkosi@example.com"
+                        class="mail d-inline-block text-center position-relative rounded-circle"
+                        aria-label="Email Contact"
+                    >
+                        <i class="ri-mail-fill"></i>
+                    </a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Profile Information Card -->
+        <mat-card
+            class="qot-card profile-card mb-25 border-radius bg-white border-none d-block"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mt-0 mb-0">Profile Information</h5>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul class="info-list pl-0 mb-0 mt-0 list-unstyled">
+                    <li>
+                        <span class="text-body">User ID:</span>
+                        7001
+                    </li>
+                    <li>
+                        <span class="text-body">Full Name:</span>
+                        Themba Nkosi
+                    </li>
+                    <li>
+                        <span class="text-body">Email:</span>
+                        themba.nkosi&#64;example.com
+                    </li>
+                    <li>
+                        <span class="text-body">Role:</span>
+                        Intern
+                    </li>
+                    <li>
+                        <span class="text-body">Location:</span>
+                        Johannesburg, South Africa
+                    </li>
+                    <li>
+                        <span class="text-body">Join Date:</span>
+                        January 15, 2024
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Additional Information Card -->
+        <mat-card
+            class="qot-card profile-card mb-25 border-radius bg-white border-none d-block"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mt-0 mb-0">Additional Information</h5>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul class="info-list pl-0 mb-0 mt-0 list-unstyled">
+                    <li>
+                        <span class="text-body">Phone:</span>
+                        +27 82 123 4567
+                    </li>
+                    <li>
+                        <span class="text-body">Address:</span>
+                        123 Main Street, Johannesburg, SA
+                    </li>
+                    <li>
+                        <span class="text-body">Certifications:</span>
+                        B.Optom, University of KwaZulu-Natal, 2023
+                    </li>
+                    <li>
+                        <span class="text-body">Languages:</span>
+                        English, isiZulu, Afrikaans
+                    </li>
+                    <li>
+                        <span class="text-body">Special Interests:</span>
+                        Pediatric Optometry, Contact Lenses
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="col-xxxl-9">
+        <app-all-projects></app-all-projects>
+        <div class="row">
+            <div class="col-xxxl-8">
+                <app-recent-activity></app-recent-activity>
+            </div>
+            <div class="col-xxxl-4">
+                <div class="row">
+                    <!-- Ratings Card -->
+                    <div class="col-lg-6 col-xxxl-12">
+                        <mat-card
+                            class="qot-card profile-card mb-25 border-radius bg-white border-none d-block"
+                            [class.component-dark-theme]="themeService.isDark()"
+                            [class.rtl-enabled]="themeService.isRTLEnabled()"
+                        >
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <h5 class="mt-0 mb-0">Ratings</h5>
+                                </mat-card-title>
+                                <mat-card-subtitle>
+                                    <h5 class="mt-0 mb-0">Overall Rating: 4.5</h5>
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div class="ratings-list">
+                                    <div class="rating d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="image">
+                                                <img
+                                                    src="assets/images/users/user1.jpg"
+                                                    class="rounded-circle"
+                                                    alt="practice-image"
+                                                />
+                                            </div>
+                                            <div class="title">
+                                                <span class="d-block fw-medium">Dr. Salvatore Dewall</span>
+                                                <span class="d-block text-body">dewall&#64;gmail.com</span>
+                                                <span class="d-block text-body">Rating: 5 stars</span>
+                                            </div>
+                                        </div>
+                                        <button mat-button class="text-body p-0 h-auto">View Review</button>
+                                    </div>
+                                    <!-- Repeat similar structure for other ratings -->
+                                    <!-- Example 2 -->
+                                    <div class="rating d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="image">
+                                                <img
+                                                    src="assets/images/users/user2.jpg"
+                                                    class="rounded-circle"
+                                                    alt="practice-image"
+                                                />
+                                            </div>
+                                            <div class="title">
+                                                <span class="d-block fw-medium">Dr. Alina Smith</span>
+                                                <span class="d-block text-body">smith&#64;gmail.com</span>
+                                                <span class="d-block text-body">Rating: 4 stars</span>
+                                            </div>
+                                        </div>
+                                        <button mat-button class="text-body p-0 h-auto">View Review</button>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+
+                    <!-- Additional Ratings Card -->
+                    <div class="col-lg-6 col-xxxl-12">
+                        <mat-card
+                            class="qot-card profile-card mb-25 border-radius bg-white border-none d-block"
+                            [class.component-dark-theme]="themeService.isDark()"
+                            [class.rtl-enabled]="themeService.isRTLEnabled()"
+                        >
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <h5 class="mt-0 mb-0">Additional Ratings</h5>
+                                </mat-card-title>
+                                <mat-card-subtitle>
+                                    <h5 class="mt-0 mb-0">Total Reviews: 57</h5>
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div class="ratings-list">
+                                    <div class="rating d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="image">
+                                                <img
+                                                    src="assets/images/users/user12.jpg"
+                                                    class="rounded-circle"
+                                                    alt="practice-image"
+                                                />
+                                            </div>
+                                            <div class="title">
+                                                <span class="d-block fw-medium">Lenore Crum</span>
+                                                <span class="d-block text-body">crum&#64;gmail.com</span>
+                                                <span class="d-block text-body">Rating: 4.5 stars</span>
+                                            </div>
+                                        </div>
+                                        <button mat-button class="text-body p-0 h-auto">View Review</button>
+                                    </div>
+                                    <!-- Repeat similar structure for other additional ratings -->
+                                    <!-- Example 2 -->
+                                    <div class="rating d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="image">
+                                                <img
+                                                    src="assets/images/users/user11.jpg"
+                                                    class="rounded-circle"
+                                                    alt="practice-image"
+                                                />
+                                            </div>
+                                            <div class="title">
+                                                <span class="d-block fw-medium">Paul Bartlett</span>
+                                                <span class="d-block text-body">paul&#64;gmail.com</span>
+                                                <span class="d-block text-body">Rating: 4 stars</span>
+                                            </div>
+                                        </div>
+                                        <button mat-button class="text-body p-0 h-auto">View Review</button>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

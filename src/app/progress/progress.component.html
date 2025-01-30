@@ -1,0 +1,26 @@
+<div class="progress-status">
+  <h2>Trigger Azure Pipeline</h2>
+  <div>
+    <label for="repoUrl">Repository URL:</label>
+    <input id="repoUrl" type="text" placeholder="https://github.com/YourRepo/YourProject" #repoUrl>
+    <button (click)="triggerPipeline(repoUrl.value)">Trigger Pipeline</button>
+  </div>
+  <h3>Pipeline Status: {{ pipelineStatus }}</h3>
+
+  <div *ngFor="let stage of pipelineStages" class="stage">
+    <h4>Stage: {{ stage.name }}</h4>
+    <p>State: {{ stage.state }}</p>
+    <p>Result: {{ stage.result }}</p>
+    <p>Start: {{ stage.start_time }}</p>
+    <p>End: {{ stage.end_time }}</p>
+    
+    <div class="progress-bar">
+      <div class="progress" [ngClass]="getProgressClass(stage.state)"
+           [style.width]="getProgressWidth(stage.state)">
+        {{ stage.state }}
+      </div>
+    </div>
+  </div>
+</div>
+  
+  

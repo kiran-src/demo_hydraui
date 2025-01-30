@@ -1,0 +1,29 @@
+[{
+    "id": 249,
+        "buildNumber": "20240902.5",
+        "status": "completed",
+        "result": "failed",
+        "queueTime": "2024-09-02T09:01:07.9913782Z",
+        "startTime": "2024-09-02T09:01:13.1588225Z",
+        "finishTime": "2024-09-02T09:01:48.2009396Z"
+},
+{
+    "id": 248,
+        "buildNumber": "20240902.4",
+        "status": "completed",
+        "result": "succeeded",
+        "queueTime": "2024-09-02T08:52:11.3780227Z",
+        "startTime": "2024-09-02T08:52:13.6662182Z",
+        "finishTime": "2024-09-02T08:52:37.6127615Z"
+},
+{
+    "id": 247,
+        "buildNumber": "20240902.3",
+        "status": "completed",
+        "result": "failed",
+        "queueTime": "2024-09-02T08:50:25.3132612Z",
+        "startTime": "2024-09-02T08:50:28.602368Z",
+        "finishTime": "2024-09-02T08:50:52.8123701Z",
+}
+
+]

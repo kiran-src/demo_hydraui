@@ -1,0 +1,257 @@
+<!-- test-execution.component.html -->
+<div class="container">
+  <mat-card class="main-card">
+    <mat-card-header>
+      <mat-card-title>Test Pipeline Execution</mat-card-title>
+      <mat-card-subtitle>Configure and run your Azure DevOps pipeline</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-horizontal-stepper [linear]="true" #stepper [selectedIndex]="currentStep - 1">
+        <!-- Step 1: Azure DevOps Authentication -->
+        <mat-step [stepControl]="patForm" label="Authentication">
+          <form [formGroup]="patForm" class="form-container">
+            <div class="form-section">
+              <h3>Azure DevOps Authentication</h3>
+              
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Personal Access Token (PAT)</mat-label>
+                <input matInput 
+                       [type]="hideToken ? 'password' : 'text'"
+                       formControlName="personalAccessToken" 
+                       placeholder="Enter your Azure DevOps PAT">
+                <button mat-icon-button matSuffix 
+                        (click)="hideToken = !hideToken" 
+                        [attr.aria-label]="'Hide token'" 
+                        type="button">
+                  <mat-icon>{{hideToken ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint align="start">
+                  Token must have Build and Pipeline read/execute permissions
+                </mat-hint>
+                <mat-error *ngIf="patForm.get('personalAccessToken')?.invalid">
+                  Personal Access Token is required and must be at least 32 characters
+                </mat-error>
+              </mat-form-field>
+
+              <div class="form-actions">
+                <button mat-raised-button 
+                        color="accent" 
+                        class="validate-button"
+                        (click)="validatePAT()" 
+                        [disabled]="!patForm.valid || isLoading">
+                  <mat-icon>verified</mat-icon>
+                  Validate Token
+                  <mat-spinner *ngIf="isLoading" 
+                              diameter="20" 
+                              class="button-spinner">
+                  </mat-spinner>
+                </button>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button mat-raised-button 
+                      color="primary" 
+                      matStepperNext
+                      [disabled]="!patForm.valid || !patValidated">
+                Next
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 2: Pipeline Selection -->
+        <mat-step [stepControl]="configSelectionForm" label="Pipeline Selection">
+          <form [formGroup]="configSelectionForm" class="form-container">
+            <div class="form-section">
+              <h3>Select Pipeline Configuration</h3>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Organization</mat-label>
+                <mat-select formControlName="organization">
+                  <mat-option *ngFor="let org of organizations" [value]="org.accountName">
+                    {{org.accountName}}
+                  </mat-option>
+                </mat-select>
+                <mat-hint>Select your Azure DevOps organization</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Project</mat-label>
+                <mat-select formControlName="project" [disabled]="!configSelectionForm.get('organization')?.value">
+                  <mat-option *ngFor="let proj of projects" [value]="proj.name">
+                    {{proj.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-hint>Select your project</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Pipeline</mat-label>
+                <mat-select formControlName="pipeline" [disabled]="!configSelectionForm.get('project')?.value">
+                  <mat-option *ngFor="let pipe of pipelines" [value]="pipe.id">
+                    {{pipe.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-hint>Select the pipeline to execute</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="step-actions">
+              <button mat-stroked-button matStepperPrevious>
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button 
+                      color="primary" 
+                      matStepperNext
+                      [disabled]="!configSelectionForm.valid">
+                Next
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 3: Pipeline Details -->
+        <mat-step [stepControl]="configDetailsForm" label="Pipeline Details">
+          <form [formGroup]="configDetailsForm" class="form-container">
+            <div class="form-section">
+              <h3>Configure Pipeline Details</h3>
+
+              <div class="pipeline-info" *ngIf="selectedPipeline">
+                <div class="info-item">
+                  <strong>Repository:</strong> {{selectedPipeline.repository?.name}}
+                </div>
+                <div class="info-item">
+                  <strong>Default Branch:</strong> {{selectedPipeline.repository?.defaultBranch || 'main'}}
+                </div>
+              </div>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Pipeline Name</mat-label>
+                <input matInput 
+                       formControlName="pipelineName" 
+                       placeholder="Enter a descriptive name">
+                <mat-hint>A unique name for this pipeline execution</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Version Manager</mat-label>
+                <mat-select formControlName="versionManager">
+                  <mat-option value="npm">npm</mat-option>
+                  <mat-option value="yarn">yarn</mat-option>
+                  <mat-option value="pip">pip</mat-option>
+                  <mat-option value="maven">maven</mat-option>
+                </mat-select>
+                <mat-hint>Select package manager</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="step-actions">
+              <button mat-stroked-button matStepperPrevious>
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button 
+                      color="primary"
+                      (click)="runPipeline()"
+                      [disabled]="!configDetailsForm.valid || isLoading">
+                <mat-icon>play_arrow</mat-icon>
+                <span *ngIf="!isLoading">Run Pipeline</span>
+                <span *ngIf="isLoading">Running...</span>
+                <mat-spinner *ngIf="isLoading" 
+                            diameter="20" 
+                            class="button-spinner">
+                </mat-spinner>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 4: Execution Status -->
+        <mat-step label="Execution Status">
+          <div class="execution-status">
+            <!-- Status Card -->
+            <mat-card *ngIf="buildRun" class="status-card">
+              <mat-card-header>
+                <mat-card-title>
+                  <div class="status-header">
+                    <span>Status: {{buildRun.status}}</span>
+                    <div [class]="'status-indicator ' + buildRun.status.toLowerCase()"></div>
+                  </div>
+                </mat-card-title>
+                <mat-card-subtitle>{{buildRun.pipelineName}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="status-details">
+                  <p><strong>Build ID:</strong> {{buildRun.buildRunId}}</p>
+                  <p><strong>Started:</strong> {{buildRun.startTime | date:'medium'}}</p>
+                  <p *ngIf="buildRun.endTime">
+                    <strong>Completed:</strong> {{buildRun.endTime | date:'medium'}}
+                  </p>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <!-- Logs Card -->
+            <mat-card class="logs-card">
+              <mat-card-header>
+                <mat-card-title>Pipeline Logs</mat-card-title>
+                <mat-card-subtitle *ngIf="buildRunLogs.length">
+                  {{buildRunLogs.length}} log entries
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="logs-container" #logsContainer>
+                  <div *ngFor="let log of buildRunLogs" 
+                       [class]="'log-entry ' + getLogClass(log.level)">
+                    <span class="log-timestamp">
+                      {{log.timestamp | date:'HH:mm:ss'}}
+                    </span>
+                    <span class="log-message" [innerHTML]="log.message"></span>
+                  </div>
+                  <div *ngIf="!buildRunLogs.length" class="no-logs">
+                    <mat-icon>hourglass_empty</mat-icon>
+                    <span>Waiting for logs...</span>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <!-- Action Buttons -->
+            <div class="execution-actions">
+              <button mat-stroked-button 
+                      color="warn"
+                      (click)="cancelBuild()"
+                      [disabled]="!buildRun || isCompletedStatus(buildRun.status)">
+                <mat-icon>stop</mat-icon>
+                Cancel Build
+              </button>
+              <button mat-raised-button 
+                      color="primary"
+                      routerLink="/dashboard">
+                <mat-icon>dashboard</mat-icon>
+                Go to Dashboard
+              </button>
+            </div>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" *ngIf="isLoading">
+    <mat-spinner diameter="30"></mat-spinner>
+    <span class="loading-text">{{loadingMessage}}</span>
+  </div>
+
+  <!-- Connection Status -->
+  <div class="connection-status" *ngIf="!(websocketConnected$ | async)">
+    <mat-icon color="warn">wifi_off</mat-icon>
+    <span>Connection lost - Reconnecting...</span>
+  </div>
+</div>

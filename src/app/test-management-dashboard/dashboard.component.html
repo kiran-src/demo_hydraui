@@ -1,0 +1,63 @@
+<!-- dashboard.component.html -->
+<div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Test Management Dashboard</h1>
+      <div class="dashboard-actions">
+        <mat-form-field>
+          <mat-select [value]="selectedTimeframe" (selectionChange)="onTimeframeChange($event.value)">
+            <mat-option *ngFor="let tf of timeframes" [value]="tf.value">
+              {{tf.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-icon-button (click)="refresh()" class="refresh-button">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    </div>
+  
+    <div class="dashboard-grid" *ngIf="metrics">
+      <!-- Row 1: Key Metrics -->
+      <app-active-test-runs
+        [data]="metrics.activeTestRuns"
+        class="dashboard-widget">
+      </app-active-test-runs>
+  
+      <app-test-cases-count
+        [data]="metrics.totalTestCases"
+        class="dashboard-widget">
+      </app-test-cases-count>
+  
+      <app-test-case-distribution
+        [data]="metrics.distribution"
+        class="dashboard-widget">
+      </app-test-case-distribution>
+  
+      <app-test-case-automation
+        [ratio]="metrics.automationRatio"
+        class="dashboard-widget">
+      </app-test-case-automation>
+  
+      <!-- Row 2: Timeline -->
+      <app-test-runs-timeline
+        [timeframe]="selectedTimeframe"
+        class="dashboard-widget wide">
+      </app-test-runs-timeline>
+  
+      <!-- Row 3: Detailed Charts -->
+      <app-test-results-events
+        [timeframe]="selectedTimeframe"
+        class="dashboard-widget wide-half">
+      </app-test-results-events>
+  
+      <app-test-case-priority
+        [data]="metrics.priority"
+        class="dashboard-widget wide-half">
+      </app-test-case-priority>
+    </div>
+  
+    <div class="loading-overlay" *ngIf="!metrics">
+      <mat-spinner></mat-spinner>
+      <p>Loading dashboard data...</p>
+    </div>
+  </div>

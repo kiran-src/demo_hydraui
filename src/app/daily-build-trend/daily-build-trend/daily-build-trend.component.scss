@@ -1,0 +1,61 @@
+.daily-build-trend {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #d1d3e2;
+  border-radius: 8px;
+}
+
+.chart-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #4e73df;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  height: 400px;
+}
+
+.bar {
+  fill: #4e73df; /* Blue for actual data */
+}
+
+.predicted-bar {
+  fill: #f6c23e; /* Yellow for predicted data */
+  opacity: 0.7;   /* Lower opacity for predicted bars */
+}
+
+.bar, .predicted-bar {
+  transition: fill 0.3s ease; /* Smooth transition on hover */
+}
+
+.bar:hover, .predicted-bar:hover {
+  fill: #2e59d9;  /* Hover effect to slightly change color */
+}
+
+.text-label {
+  font-size: 12px;
+  fill: #333;
+}
+.tabs {
+  display: flex;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: fit-content;
+}
+.tab {
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 5px;
+  background-color: #f2f2f2;
+}
+
+.tab.active {
+  background-color: #005c8f;
+  color: white;
+}

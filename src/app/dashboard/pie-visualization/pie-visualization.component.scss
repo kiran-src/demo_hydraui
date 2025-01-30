@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  width: 100%;
+  padding: 16px;
+}
+
+.visualization-card {
+  margin: 0 auto;
+  max-width: 1400px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: auto; // Change to auto for flexible height
+  max-height: 80vh; // Limit height to avoid overflow
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.visualization-container {
+  display: flex;
+  flex: 1;
+  justify-content: space-between; // Space between charts
+  flex-wrap: wrap; // Allow wrapping for more charts
+}
+
+.chart-container {
+  flex: 1 1 45%; // Allow charts to take up to 45% width each
+  padding: 8px; // Reduced padding for better spacing
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: none;
+  min-width: 0;
+
+  h3 {
+    margin-bottom: 8px; // Decreased space between heading and chart
+    font-family: 'Quicksand', sans-serif;
+    color: #333;
+  }
+
+  #gauge-chart-id, #pie-chart {
+    width: 90%; // Keep chart width for visibility
+    max-width: 300px; // Reduced max width
+  }
+
+  .percentage-display {
+    margin-top: 4px; // Move success rate display closer to the chart
+    font-size: 0.9em; // Smaller font size for more compact look
+    color: #333;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    padding: 4px; // Reduced padding
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: auto;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .visualization-container {
+    flex-direction: column; // Stack charts on smaller screens
+  }
+
+  .chart-container {
+    height: auto; // Adjust height as needed
+    margin-bottom: 16px; // Space between stacked charts
+  }
+
+  .percentage-display {
+    margin-top: 4px; // Adjust space for better layout
+    font-size: 14px; // Smaller font size for smaller screens
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: auto; // Allow for flexible height on smaller screens
+  }
+
+  .percentage-display {
+    font-size: 12px; // Smaller font size
+  }
+}

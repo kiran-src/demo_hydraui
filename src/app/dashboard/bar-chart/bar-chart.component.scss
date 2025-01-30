@@ -1,0 +1,36 @@
+/* Container styling for the bar chart */
+figure#bar-chart {
+  width: 100%;           /* Ensure the chart takes full width of container */
+  max-width: 800px;      /* Set a maximum width */
+  height: auto;
+  margin: 0 auto;        /* Center-align the figure */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tooltip styling */
+#tooltip {
+  position: absolute;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  color: #333;                                /* Text color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 0.875em;
+  pointer-events: none;                       /* Prevent cursor changes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  /* Subtle shadow */
+  z-index: 10;                                /* Ensure tooltip is on top */
+  transition: opacity 0.2s ease-in-out;       /* Smooth transition */
+}
+
+/* Style the bars */
+svg rect {
+  transition: fill 0.3s ease; /* Smooth color change on hover */
+}
+
+/* Style the circles */
+svg circle {
+  transition: r 0.2s ease; /* Smooth radius change on hover */
+}

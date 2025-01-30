@@ -1,0 +1,111 @@
+{
+    "totalTestCases": 1000,
+    "activeExecutions": 50,
+    "testCaseSuccessRate": 0.85,
+    "defectResolutionRate": 0.75,
+    "testCaseDistribution": {
+      "passed": 700,
+      "failed": 150,
+      "inProgress": 100,
+      "blocked": 50
+    },
+    "testExecutionTrends": [
+      { "date": "2024-01-01", "count": 20 },
+      { "date": "2024-01-02", "count": 25 },
+      { "date": "2024-01-03", "count": 30 },
+      { "date": "2024-01-04", "count": 22 },
+      { "date": "2024-01-05", "count": 35 },
+      { "date": "2024-01-06", "count": 28 },
+      { "date": "2024-01-07", "count": 40 }
+    ],
+    "defectTrends": [
+      { "date": "2024-01-01", "count": 5 },
+      { "date": "2024-01-02", "count": 7 },
+      { "date": "2024-01-03", "count": 4 },
+      { "date": "2024-01-04", "count": 6 },
+      { "date": "2024-01-05", "count": 3 },
+      { "date": "2024-01-06", "count": 8 },
+      { "date": "2024-01-07", "count": 5 }
+    ],
+    "recentReports": [
+      {
+        "reportId": 1,
+        "reportString": "Performance test results for Login module",
+        "createdDate": "2024-01-07T14:30:00Z"
+      },
+      {
+        "reportId": 2,
+        "reportString": "Security scan report for Payment Gateway",
+        "createdDate": "2024-01-06T11:15:00Z"
+      },
+      {
+        "reportId": 3,
+        "reportString": "UI/UX test results for mobile app",
+        "createdDate": "2024-01-05T09:45:00Z"
+      },
+      {
+        "reportId": 4,
+        "reportString": "API integration test summary",
+        "createdDate": "2024-01-04T16:20:00Z"
+      },
+      {
+        "reportId": 5,
+        "reportString": "Database performance optimization results",
+        "createdDate": "2024-01-03T13:00:00Z"
+      }
+    ],
+    "recentIncidentReports": [
+      {
+        "incidentReportId": 1,
+        "testCaseDescription": "User unable to reset password",
+        "incidentTime": "2024-01-07T10:30:00Z"
+      },
+      {
+        "incidentReportId": 2,
+        "testCaseDescription": "Payment transaction timeout",
+        "incidentTime": "2024-01-06T15:45:00Z"
+      },
+      {
+        "incidentReportId": 3,
+        "testCaseDescription": "Mobile app crash on startup",
+        "incidentTime": "2024-01-05T09:15:00Z"
+      },
+      {
+        "incidentReportId": 4,
+        "testCaseDescription": "Incorrect data displayed in user profile",
+        "incidentTime": "2024-01-04T14:20:00Z"
+      },
+      {
+        "incidentReportId": 5,
+        "testCaseDescription": "API endpoint returning 500 error",
+        "incidentTime": "2024-01-03T11:00:00Z"
+      }
+    ],
+    "recentBuildRuns": [
+      {
+        "buildRunId": 1,
+        "runTime": "2024-01-07T18:30:00Z",
+        "comment": "Release candidate 1.2.3"
+      },
+      {
+        "buildRunId": 2,
+        "runTime": "2024-01-06T17:45:00Z",
+        "comment": "Hotfix for login issue"
+      },
+      {
+        "buildRunId": 3,
+        "runTime": "2024-01-05T16:15:00Z",
+        "comment": "New feature: User dashboard"
+      },
+      {
+        "buildRunId": 4,
+        "runTime": "2024-01-04T19:20:00Z",
+        "comment": "Performance optimizations"
+      },
+      {
+        "buildRunId": 5,
+        "runTime": "2024-01-03T15:00:00Z",
+        "comment": "Integration with payment gateway"
+      }
+    ]
+  }

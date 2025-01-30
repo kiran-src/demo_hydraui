@@ -1,0 +1,58 @@
+<mat-card class="qot-card stats-card mb-25 border-radius bg-white border-none d-block"
+    [class.component-dark-theme]="themeService.isDark()"
+    [class.rtl-enabled]="themeService.isRTLEnabled()">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div id="testCaseStats" class="stat-item position-relative"></div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div id="executionStats" class="stat-item position-relative"></div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div id="defectStats" class="stat-item position-relative"></div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div id="buildStats" class="stat-item position-relative"></div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="row">
+    <div class="col-lg-6 col-xxxl-4">
+        <mat-card class="qot-card most-leads-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+            [class.rtl-enabled]="themeService.isRTLEnabled()">
+            <mat-card-content>
+                <div id="testCaseDistribution"></div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-lg-6 col-xxxl-4">
+        <mat-card class="qot-card most-leads-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+            [class.rtl-enabled]="themeService.isRTLEnabled()">
+            <mat-card-content>
+                <div id="executionTrend"></div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-lg-6 col-xxxl-4">
+        <mat-card class="qot-card most-leads-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+            [class.rtl-enabled]="themeService.isRTLEnabled()">
+            <mat-card-content>
+                <div id="defectTrend"></div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<mat-card class="qot-card most-leads-card mb-25 border-radius bg-white border-none d-block"
+    [class.component-dark-theme]="themeService.isDark()"
+    [class.rtl-enabled]="themeService.isRTLEnabled()">
+    <mat-card-content>
+        <div id="recentBuilds"></div>
+    </mat-card-content>
+</mat-card>

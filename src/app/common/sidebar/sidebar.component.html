@@ -1,0 +1,186 @@
+<div
+    class="sidebar-area bg-white active"
+    [ngClass]="{ active: isSidebarToggled }"
+    [class.component-dark-theme]="themeService.isDark()"
+    [class.dark-sidebar]="themeService.isSidebarDark()"
+    [class.right-sidebar]="themeService.isRightSidebar()"
+    [class.hide-sidebar]="themeService.isHideSidebar()"
+    [class.card-borderd-theme]="themeService.isCardBorder()"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <div class="logo bg-white">
+        <a routerLink="/" class="d-flex align-items-center">
+            <img src="assets/images/HYDRA.png" alt="logo-icon" />
+            <!-- <span class="fw-semibold">QoT</span> -->
+        </a>
+    </div>
+    <div (click)="toggle()" class="burger-menu" [ngClass]="{ active: isSidebarToggled }">
+        <span class="top-bar"></span>
+        <span class="middle-bar"></span>
+        <span class="bottom-bar"></span>
+    </div>
+    <ng-scrollbar visibility="hover">
+        <div class="sidebar-inner">
+            <div class="sidebar-menu">
+                <mat-accordion>
+                    <a
+                        routerLink="/dashboard"
+                        class="sidebar-menu-link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        <i class="material-symbols-outlined">analytics</i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                    <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="material-symbols-outlined">widgets</i>
+                                <span class="title">Test Execution</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/forms"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Mobile
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/forms/advanced-elements"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Web
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/forms/wizard"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    API
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel> -->
+                    <!-- <a
+                        routerLink="/test-execution"
+                        class="sidebar-menu-link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        <i class="material-symbols-outlined">widgets</i>
+                        <span class="title">Test Execution</span>
+                    </a> -->
+                    <a
+                        routerLink="/pipeline-auth"
+                        class="sidebar-menu-link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        <i class="material-symbols-outlined">table_chart</i>
+                        <span class="title">Pipeline Management</span>
+                    </a>
+                    <a
+                        routerLink="/test-management"
+                        class="sidebar-menu-link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        <i class="material-symbols-outlined">widgets</i>
+                        <span class="title">Test Management</span>
+                    </a>
+
+                    <a
+                        routerLink="/task-management"
+                        class="sidebar-menu-link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        <i class="material-symbols-outlined">widgets</i>
+                        <span class="title">Task Management</span>
+                    </a>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="material-symbols-outlined">settings</i>
+                                <span class="title">Settings</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/settings"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Account Settings
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/settings/change-password"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Change Password
+                                </a>
+                            </li>
+                            <!-- <li class="sidemenu-item">
+                                <a
+                                    routerLink="/settings/connections"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Connections
+                                </a>
+                            </li> -->
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/settings/privacy-policy"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a
+                                    routerLink="/settings/terms-conditions"
+                                    routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    class="sidemenu-link"
+                                >
+                                    Terms & Conditions
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+
+                    <a
+                        routerLink="/authentication/logout"
+                        class="sidebar-menu-link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        <i class="material-symbols-outlined">logout</i>
+                        <span class="title">Logout</span>
+                    </a>
+                </mat-accordion>
+            </div>
+        </div>
+    </ng-scrollbar>
+</div>

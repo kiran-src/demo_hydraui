@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Pipeline - Edit YAML</title>
+
+    <!-- Link to CodeMirror CSS for YAML editor -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.min.css">
+    
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Execute Test</h1>
+
+    <!-- Stages element -->
+    <div class="stages">
+        <div class="stage-container">
+            <div class="stage inactive" id="stage1">1</div>
+            <div class="stage-label">Test Config</div>
+        </div>
+        <div class="stage-container">
+            <div class="stage" id="stage2">2</div>
+            <div class="stage-label">Repository</div>
+        </div>
+        <div class="stage-container">
+            <div class="stage inactive" id="stage3">3</div>
+            <div class="stage-label">Completed</div>
+        </div>
+       
+    </div>
+
+    <!-- Step 1: Pipeline Name -->
+    <div id="step1" class="form-group">
+        <label for="pipelineName">Pipeline Name</label>
+        <input type="text" id="pipelineName" placeholder="Enter pipeline name">
+    </div>
+
+    <!-- Step 1: Repository Name -->
+    <div id="step1" class="form-group">
+        <label for="repoName">Repository Name</label>
+        <input type="text" id="repoName" placeholder="Enter repository name">
+    </div>
+
+    <!-- Step 1: Select Version Manager -->
+    <div id="step1" class="form-group">
+        <label for="versionManager">Select Version Manager</label>
+        <select id="versionManager">
+            <option value="">Select a version manager</option>
+            <option value="npm">npm</option>
+            <option value="yarn">yarn</option>
+            <option value="pip">pip</option>
+            <option value="maven">maven</option>
+            <!-- Add more version managers as needed -->
+        </select>
+    </div>
+
+    <!-- Step 1: Repository URL -->
+    <div id="step1" class="form-group">
+        <label for="repoURL">Repository URL</label>
+        <input type="text" id="repoURL" placeholder="Enter repository URL">
+    </div>
+
+    <div class="form-group">
+        <label for="projectName">Select Project Name</label>
+        <select id="projectName" ng-model="formCtrl.projectName" ng-options="project.value as project.label for project in formCtrl.projects">
+            <option value="" disabled selected>Select Project Name</option>
+        </select>
+    </div>
+
+    <!-- Step 1: Branch -->
+    <div id="step1" class="form-group">
+        <label for="branch">Select Branch</label>
+        <select id="branch">
+            <option value="">Select a branch</option>
+            <option value="main">main</option>
+            <option value="develop">develop</option>
+            <option value="feature">feature</option>
+            <option value="bugfix">bugfix</option>
+            <!-- Add more branches as needed -->
+        </select>
+    </div>
+
+    <!-- Step 1: Latest Commits -->
+    <div id="latestCommits" class="form-group">
+        <label>Latest Commits</label>
+        <div class="commit-list" id="commitList">
+            <p>No commits available.</p>
+        </div>
+    </div>
+
+    <!-- Step 2: YAML Configuration -->
+    <!-- <div id="step2" class="form-group hidden">
+        <label for="yamlEditor">YAML Configuration</label>
+        <textarea id="yamlEditor" placeholder="Enter or paste your YAML configuration here..."></textarea>
+    </div> -->
+
+    <!-- Step 3: Review -->
+    <div id="step3" class="form-group hidden">
+        <h3>Review Your Pipeline Details</h3>
+        <p><strong>Pipeline Name:</strong> <span id="reviewPipelineName"></span></p>
+        <p><strong>Repository Name:</strong> <span id="reviewRepoName"></span></p>
+        <p><strong>Version Manager:</strong> <span id="reviewVersionManager"></span></p>
+        <p><strong>Repository URL:</strong> <span id="reviewRepoURL"></span></p>
+        <p><strong>Branch:</strong> <span id="reviewBranch"></span></p>
+        <p><strong>YAML Configuration:</strong></p>
+        <pre id="reviewYamlConfig"></pre>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+    <div id="step4" class="form-group hidden">
+        <h3>Pipeline Successfully Created!</h3>
+        <p>Thank you for setting up your pipeline.</p>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="buttons">
+        <a href="/setup-yaml"><button class="button" id="nextStepButton">Previous Step</button></a>
+        <!-- <a href=""><button class="button" id="nextStepButton" type="submit">Run Execution Test</button></a> -->
+        <button class="button" id="nextStepButton" type="button" onclick="runExecutionTest()">Run Execution Test</button>
+
+
+    </div>
+</div>
+
+<script>
+
+    function runExecutionTest() {
+    // Your JavaScript code for running the execution test
+    const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Authorization", "Basic OjN1cnZoMm1lbzZ0c3Y2bWNxZng3NmFyZjNmeGVtNXdsb2ZzMzY2eTU3eW11N2J5NHFkYnE=");
+myHeaders.append("Cookie", "VstsSession=%7B%22PersistentSessionId%22%3A%228330960d-5b01-4cab-bc22-2633e2ea2c72%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D; VstsSession=%7B%22PersistentSessionId%22%3A%229047b0cc-4b3c-4968-bf64-aaa5aaaf12ee%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D");
+
+const raw = JSON.stringify({
+  "definition": {
+    "id": 14
+  },
+  "templateParameters": {
+    "repo_branch": "basic_selenium",
+    "repo_url": "https://github.com/suprise079/basic_selenium.git"
+  }
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://dev.azure.com/Team-Catalyst/Project HYDRA/_apis/pipelines/15/runs?api-version=7.1", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+    alert('Running execution test...'); // Example action
+    // Additional code here to handle the test
+}
+
+
+</script>
+<!-- CodeMirror JS (optional for advanced YAML editing)
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/yaml/yaml.min.js"> -->

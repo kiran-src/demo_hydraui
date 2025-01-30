@@ -1,0 +1,285 @@
+<!-- task-management-setup.component.html -->
+<div class="task-management-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Task Management Setup</mat-card-title>
+      <br><br>
+      <mat-card-subtitle>Connect and sync your task management data</mat-card-subtitle>
+      <br><br>
+    </mat-card-header>
+<br>
+    <mat-card-content>
+      <mat-stepper [linear]="true" #stepper>
+        <!-- Tool Selection Step -->
+        <mat-step [stepControl]="toolSelectionForm">
+          <ng-template matStepLabel>Select Task Management Tool</ng-template>
+          <form [formGroup]="toolSelectionForm">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Task Management Tool</mat-label>
+              
+              <mat-select formControlName="selectedTool">
+                <mat-option *ngFor="let tool of availableTools" [value]="tool.key">
+                  {{ tool.displayName }}
+                  <mat-icon class="tool-icon">{{tool.key === 'jira' ? 'assignment' : 'cloud'}}</mat-icon>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="toolSelectionForm.get('selectedTool')?.hasError('required')">
+                Please select a task management tool
+              </mat-error>
+            </mat-form-field>
+
+            <div class="tool-info" *ngIf="toolConfig">
+              <mat-icon color="primary">info</mat-icon>
+              <span>{{ toolConfig.description }}</span>
+            </div>
+
+            <div class="step-actions">
+              <button mat-raised-button 
+                      color="primary" 
+                      matStepperNext
+                      [disabled]="!toolSelectionForm.valid">
+                Continue
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Authentication Step -->
+        <mat-step [stepControl]="authForm">
+          <ng-template matStepLabel>Authenticate</ng-template>
+          <form [formGroup]="authForm" (ngSubmit)="authenticate()">
+            <!-- Jira Domain and Email fields for Jira -->
+            <ng-container *ngIf="selectedTool === 'jira'">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Jira Domain</mat-label>
+                <input matInput 
+                      formControlName="domain" 
+                      required
+                      placeholder="your-domain.atlassian.net">
+                <mat-hint>Enter your Jira site URL (e.g., your-domain.atlassian.net)</mat-hint>
+                <mat-error *ngIf="authForm.get('domain')?.hasError('required')">
+                  Jira domain is required
+                </mat-error>
+                <mat-error *ngIf="authForm.get('domain')?.hasError('pattern')">
+                  Must be a valid Atlassian domain
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Email Address</mat-label>
+                <input matInput 
+                      formControlName="email" 
+                      type="email"
+                      required
+                      placeholder="you@company.com">
+                <mat-hint>Enter the email address associated with your Jira account</mat-hint>
+                <mat-error *ngIf="authForm.get('email')?.hasError('required')">
+                  Email address is required
+                </mat-error>
+                <mat-error *ngIf="authForm.get('email')?.hasError('email')">
+                  Please enter a valid email address
+                </mat-error>
+              </mat-form-field>
+            </ng-container>
+
+            <!-- Organization field for Azure -->
+            <mat-form-field *ngIf="selectedTool === 'azure'" 
+                            appearance="fill" 
+                            class="full-width">
+              <mat-label>Organization</mat-label>
+              <input matInput 
+                    formControlName="organization" 
+                    required>
+              <mat-hint>Enter your Azure DevOps organization name</mat-hint>
+              <mat-error *ngIf="authForm.get('organization')?.hasError('required')">
+                Organization is required
+              </mat-error>
+              <mat-error *ngIf="authForm.get('organization')?.hasError('pattern')">
+                Organization name can only contain letters, numbers, and hyphens
+              </mat-error>
+            </mat-form-field>
+
+            <!-- API Key/Token field for both -->
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>{{ apiKeyLabel }}</mat-label>
+              <input matInput
+                    [type]="hideApiKey ? 'password' : 'text'"
+                    formControlName="apiKey"
+                    required>
+              <button mat-icon-button 
+                      matSuffix 
+                      type="button"
+                      (click)="hideApiKey = !hideApiKey">
+                <mat-icon>{{hideApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-hint>{{ selectedTool === 'azure' ? 'Enter your Personal Access Token' : 'Enter your API Token' }}</mat-hint>
+              <mat-error *ngIf="authForm.get('apiKey')?.hasError('required')">
+                {{ apiKeyLabel }} is required
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Help text for Jira/Xray -->
+            <div class="info-box" *ngIf="selectedTool === 'jira'">
+              <mat-icon color="primary">info</mat-icon>
+              <div class="info-content">
+                <p>To get your API token:</p>
+                <ol>
+                  <li>Log in to your Atlassian account</li>
+                  <li>Go to Account Settings > Security</li>
+                  <li>Under API Token, click 'Create and manage API tokens'</li>
+                  <li>Create a new token for this integration</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button mat-stroked-button 
+                      type="button" 
+                      matStepperPrevious>
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button 
+                      color="primary"
+                      type="submit"
+                      [disabled]="!isFormValid">
+                <mat-icon>lock_open</mat-icon>
+                Authenticate
+              </button>
+            </div>
+
+            <!-- Auth Status -->
+            <div class="auth-status" *ngIf="isAuthenticated">
+              <mat-icon color="primary">check_circle</mat-icon>
+              <span>Successfully authenticated with {{toolConfig?.displayName}}</span>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Project Selection Step -->
+<mat-step [stepControl]="projectSelectionForm">
+  <ng-template matStepLabel>Select Project</ng-template>
+  <form [formGroup]="projectSelectionForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Project</mat-label>
+      <mat-select formControlName="projectCode" 
+                 (selectionChange)="onProjectSelection($event.value)">
+        <mat-option *ngFor="let project of projects$ | async" 
+                   [value]="project.code">
+          {{ project.title }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="projectSelectionForm.get('projectCode')?.hasError('required')">
+        Please select a project
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Project Stats -->
+    <div class="project-stats" *ngIf="selectedProject">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <mat-icon>assessment</mat-icon>
+          <div class="stat-content">
+            <span class="stat-label">Epics</span>
+            <span class="stat-value">{{selectedProject.counts.epics}}</span>
+          </div>
+        </div>
+    
+        <div class="stat-card">
+          <mat-icon>schedule</mat-icon>
+          <div class="stat-content">
+            <span class="stat-label">Sprints</span>
+            <span class="stat-value">{{selectedProject.counts.sprints}}</span>
+          </div>
+        </div>
+    
+        <div class="stat-card">
+          <mat-icon>local_shipping</mat-icon>
+          <div class="stat-content">
+            <span class="stat-label">Releases</span>
+            <span class="stat-value">{{selectedProject.counts.releases || 0}}</span>
+          </div>
+        </div>
+    
+        <div class="stat-card">
+          <mat-icon>people</mat-icon>
+          <div class="stat-content">
+            <span class="stat-label">Resources</span>
+            <span class="stat-value">{{selectedProject.counts.resources || 0}}</span>
+          </div>
+        </div>
+    
+        <div class="stat-card">
+          <mat-icon>assignment</mat-icon>
+          <div class="stat-content">
+            <span class="stat-label">Tasks</span>
+            <span class="stat-value">
+              {{selectedProject.counts.tasks.total}}
+              <small>({{selectedProject.counts.tasks.active}} active)</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-actions">
+      <button mat-stroked-button matStepperPrevious>
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+      <button mat-raised-button 
+              color="primary"
+              matStepperNext
+              [disabled]="!projectSelectionForm.valid || !selectedProject">
+        Continue
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </form>
+</mat-step>
+
+        <!-- Final Sync Step -->
+        <mat-step>
+          <ng-template matStepLabel>Finalize Setup</ng-template>
+          <div class="final-step">
+            <h3>Ready to Sync</h3>
+            <p class="selected-project" *ngIf="selectedProject">
+              Selected project: <strong>{{selectedProject.title}}</strong>
+            </p>
+
+            <div class="sync-info">
+              <mat-icon color="primary">info</mat-icon>
+              <p>
+                This will sync all epics, sprints, and tasks from your selected project.
+                The initial sync may take a few minutes depending on the project size.
+              </p>
+            </div>
+
+            <div class="step-actions">
+              <button mat-stroked-button matStepperPrevious>
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button 
+                      color="primary"
+                      (click)="startSync()"
+                      [disabled]="!canProceedToSync">
+                <mat-icon>sync</mat-icon>
+                Start Sync
+              </button>
+            </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+
+      <!-- Loading Overlay -->
+      <div class="loading-overlay" *ngIf="isLoading">
+        <mat-progress-spinner mode="indeterminate" 
+                            diameter="50">
+        </mat-progress-spinner>
+        <p>{{loadingMessage}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

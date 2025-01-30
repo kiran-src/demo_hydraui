@@ -1,0 +1,36 @@
+
+{
+    "testExecutionTrend": [
+      {"date": "2023-01-01", "automated": 50, "manual": 150},
+      {"date": "2023-02-01", "automated": 75, "manual": 140},
+      {"date": "2023-03-01", "automated": 100, "manual": 130},
+      {"date": "2023-04-01", "automated": 125, "manual": 120},
+      {"date": "2023-05-01", "automated": 150, "manual": 110}
+    ],
+    "testCoverageByModule": [
+      {"module": "User Management", "covered": 80, "total": 100},
+      {"module": "Order Processing", "covered": 90, "total": 120},
+      {"module": "Inventory", "covered": 70, "total": 80},
+      {"module": "Reporting", "covered": 60, "total": 90},
+      {"module": "Analytics", "covered": 40, "total": 70}
+    ],
+    "testExecutionResults": [
+      {"status": "Passed", "count": 450},
+      {"status": "Failed", "count": 30},
+      {"status": "Blocked", "count": 15},
+      {"status": "Skipped", "count": 5}
+    ],
+    "topFailingTests": [
+      {"name": "User Login", "failureCount": 5},
+      {"name": "Payment Processing", "failureCount": 4},
+      {"name": "Order Confirmation", "failureCount": 3},
+      {"name": "Product Search", "failureCount": 3},
+      {"name": "Account Creation", "failureCount": 2}
+    ],
+    "executionTimeByType": [
+      {"type": "UI Tests", "time": 120},
+      {"type": "API Tests", "time": 45},
+      {"type": "Integration Tests", "time": 90},
+      {"type": "Unit Tests", "time": 30}
+    ]
+  }

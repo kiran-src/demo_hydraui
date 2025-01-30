@@ -1,0 +1,217 @@
+:host {
+    display: block;
+    width: 100%;
+    padding: 16px;
+  }
+  
+  .visualization-card {
+    margin: 0 auto;
+    max-width: 1400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: calc(100vh - 64px); // Adjust based on your header height
+    display: flex;
+    flex-direction: column;
+    position: relative; // Added for z-index context
+
+  }
+  
+  mat-card-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative; // Added for z-index context
+}
+  
+  .visualization-container {
+    position: relative;
+    display: flex;
+    height: 100%;
+    min-height: 0; // Important for Firefox
+  }
+  
+  .chart-container {
+    flex: 1;
+    position: relative;
+    padding: 16px;
+    min-width: 0; // Important for flex layout
+    z-index: 1; // Added to establish stacking context
+
+    svg {
+        background-color: #ffffff;
+    }
+}
+  
+  .details-panel {
+    width: 0;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    min-height: 0; // Important for Firefox
+    position: relative; // Added
+    z-index: 2; // Added to appear above chart
+    
+    &.open {
+      width: 400px;
+      min-width: 400px; // Prevent shrinking
+    }
+  }
+  
+  .details-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+
+    h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #333;
+    }
+}
+  
+  .details-content {
+    padding: 16px;
+    overflow-y: auto;
+    height: calc(100% - 64px);
+    
+    // Improve scrollbar appearance
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+  }
+  
+  .build-status {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    
+    &.succeeded {
+      background: rgba(40, 167, 69, 0.1);
+      color: #28a745;
+    }
+    
+    &.failed {
+      background: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
+    }
+    
+    &.canceled {
+      background: rgba(255, 193, 7, 0.1);
+      color: #ffc107;
+    }
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+  
+  .details-section {
+    margin-bottom: 24px;
+    background: #fff;
+    border-radius: 4px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    
+    h3 {
+      font-size: 1rem;
+      color: #666;
+      margin: 0 0 12px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+  }
+  
+  .detail-item {
+    display: flex;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    
+    .label {
+      flex: 0 0 120px;
+      color: #666;
+      font-weight: 500;
+    }
+    
+    .value {
+      flex: 1;
+      word-break: break-word;
+    }
+  }
+  
+  // Chart Elements
+  .build-circle {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+  }
+  
+  .build-line {
+    stroke-width: 2px;
+    stroke-opacity: 0.4;
+  }
+  
+  // Legend styling
+  .legend {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 1200px) {
+    .visualization-container {
+      flex-direction: column;
+    }
+    
+    .details-panel.open {
+      width: 100%;
+      height: 400px;
+    }
+    
+    .chart-container {
+      height: calc(100% - 400px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .details-panel.open {
+      height: 60%;
+    }
+    
+    .chart-container {
+      height: 40%;
+    }
+    #pie-chart {
+      display: block !important;
+      visibility: visible !important;
+      width: 450px !important;
+      height: 450px !important;
+    }
+    
+    
+    
+  }

@@ -1,0 +1,114 @@
+.metric-card {
+    height: 100%;
+    background: var(--whiteColor) !important;
+    color: var(--blackColor) !important;
+    border: 1px solid #e0e6ed;
+    box-shadow: var(--borderBoxShadow);
+  
+    mat-card-header {
+      color: var(--blackColor);
+  
+      mat-card-title {
+        color: var(--qotColor);
+      }
+    }
+  
+    .project-selector {
+      span {
+        color: var(--bodyColor);
+      }
+    }
+  
+    .metric-value {
+      color: var(--blackColor);
+  
+      .trend {
+        &.positive {
+          color: var(--successColor);
+        }
+        
+        &.negative {
+          color: var(--dangerColor);
+        }
+      }
+    }
+  
+    .info-icon {
+      color: var(--bodyColor);
+    }
+  }
+  
+  .chart-container {
+    background: var(--whiteColor);
+  }
+  
+  .priority-card {
+    background: var(--whiteColor);
+    color: var(--blackColor);
+  
+    .metric-item {
+      &.neutral { --priority-color: var(--infoColor); }
+      &.must-test { --priority-color: var(--dangerColor); }
+      &.high { --priority-color: var(--warningColor); }
+      &.medium { --priority-color: var(--successColor); }
+  
+      .metric-info {
+        .label {
+          color: var(--bodyColor);
+        }
+      }
+    }
+  }
+  
+  .results-card {
+    background: var(--whiteColor);
+    color: var(--blackColor);
+  
+    .metrics-summary {
+      .metric-item {
+        .label {
+          color: var(--bodyColor);
+        }
+  
+        .trend {
+          &.positive { color: var(--successColor); }
+          &.negative { color: var(--dangerColor); }
+        }
+      }
+    }
+  
+    .results-table {
+      th {
+        background: #f8f9fa;
+        color: var(--blackColor);
+      }
+  
+      td {
+        color: var(--blackColor);
+      }
+    }
+  }
+  
+  ::ng-deep {
+    .mat-card {
+      background: var(--whiteColor) !important;
+    }
+    
+    .mat-form-field {
+      .mat-form-field-wrapper {
+        background: var(--whiteColor);
+      }
+      
+      .mat-form-field-label {
+        color: var(--bodyColor);
+      }
+      
+      .mat-select-value {
+        color: var(--blackColor);
+      }
+    }
+    
+    .mat-progress-spinner circle {
+      stroke: var(--successColor);
+    }
+  }

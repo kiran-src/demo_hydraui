@@ -1,0 +1,102 @@
+/* Global Prediction Component Styling */
+.prediction-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.chart-container {
+  flex: 2;
+  position: relative;
+  text-align: center;
+  min-width: 300px;
+  max-width: 70%;
+}
+
+.prediction-insights {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .prediction-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .chart-container {
+      max-width: 100%;
+      height: 300px;
+  }
+
+  .prediction-insights {
+      width: 100%;
+      margin-top: 20px;
+  }
+
+  h2 {
+      font-size: 1.2rem;
+  }
+
+  h3 {
+      font-size: 1rem;
+  }
+
+  button {
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+      font-size: 1rem;
+  }
+
+  h3 {
+      font-size: 0.9rem;
+  }
+
+  button {
+      font-size: 0.8rem;
+  }
+}

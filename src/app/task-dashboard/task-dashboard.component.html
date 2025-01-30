@@ -1,0 +1,71 @@
+<!-- Tabs -->
+<div class="tabs">
+    <a href="/test-dashboard" class="tab">Test Management</a>
+    <a href="/task-dashboard" class="tab active">Task Management</a>
+    
+  </div>
+
+<div class="dashboard-container">
+  <div class="dashboard-header">
+      <div class="header-content">
+          <h1>Task Management Dashboard</h1>
+          <div class="header-actions">
+              <mat-form-field appearance="outline" class="project-select">
+                  <mat-label>Select Project</mat-label>
+                  <mat-select [(ngModel)]="selectedProject" (selectionChange)="onProjectChange($event)">
+                      <mat-option [value]="null">Overall Dashboard</mat-option>
+                      <mat-option [value]="project.code" *ngFor="let project of availableProjects">
+                          {{ project.name || project.title }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <button mat-icon-button (click)="refreshDashboard()" [disabled]="isLoading">
+                  <mat-icon>refresh</mat-icon>
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <div class="dashboard-content" *ngIf="!isLoading && dashboardData; else loading">
+      <!-- Project Overview -->
+      <div class="dashboard-row">
+          <div class="dashboard-card full-width">
+              <app-project-overview [data]="dashboardData.projects"></app-project-overview>
+          </div>
+      </div>
+
+      <!-- Epic Progress and Sprint Burndown -->
+      <div class="dashboard-row">
+          <div class="dashboard-card">
+              <app-epic-progress [data]="dashboardData.epicProgress"></app-epic-progress>
+          </div>
+          <div class="dashboard-card">
+              <app-sprint-burndown [data]="dashboardData.sprintPerformance"></app-sprint-burndown>
+          </div>
+      </div>
+
+      <!-- Task Distribution and Resource Workload -->
+      <div class="dashboard-row">
+          <div class="dashboard-card">
+              <app-task-distribution [data]="dashboardData.taskStatus"></app-task-distribution>
+          </div>
+          <div class="dashboard-card">
+              <app-resource-workload [data]="dashboardData.resourceUtilization"></app-resource-workload>
+          </div>
+      </div>
+
+      <!-- Team Velocity -->
+      <div class="dashboard-row">
+          <div class="dashboard-card full-width">
+              <app-team-velocity [data]="dashboardData.teamPerformance"></app-team-velocity>
+          </div>
+      </div>
+  </div>
+
+  <ng-template #loading>
+      <div class="loading-container">
+          <mat-spinner diameter="50"></mat-spinner>
+          <p>Loading dashboard data...</p>
+      </div>
+  </ng-template>
+</div>

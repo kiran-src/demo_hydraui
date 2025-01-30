@@ -1,0 +1,33 @@
+.chart-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  :host ::ng-deep {
+    .tooltip {
+      position: absolute;
+      padding: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      pointer-events: none;
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.4;
+      z-index: 100;
+    }
+  
+    .arc {
+      path {
+        transition: filter 0.3s ease;
+        
+        &:hover {
+          filter: brightness(1.2);
+        }
+      }
+    }
+  }
+  
+  

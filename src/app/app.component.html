@@ -1,0 +1,34 @@
+<div
+    [ngClass]="{
+        'blank-page': inAuthPage,
+        'dark-theme': themeService.isDark(),
+        'card-borderd-theme': themeService.isCardBorder(),
+        'card-border-radius': themeService.isCardBorderRadius(),
+        'rtl-enabled': themeService.isRTLEnabled()
+    }"
+>
+    <!-- Sidebar - Hide if it's an authentication page -->
+    <app-sidebar *ngIf="!inAuthPage"></app-sidebar>
+
+    <!-- Main Content -->
+    <div
+        class="main-content transition d-flex flex-column"
+        [ngClass]="{ active: isSidebarToggled }"
+        [class.right-sidebar]="themeService.isRightSidebar()"
+        [class.hide-sidebar]="themeService.isHideSidebar()"
+    >
+        <!-- Header - Hide if it's an authentication page -->
+        <app-header *ngIf="!inAuthPage"></app-header>
+
+        <!-- Router outlet for content -->
+        <router-outlet></router-outlet>
+
+        <div class="flex-grow-1"></div>
+
+        <!-- Footer - (optional, comment out if not needed) -->
+        <!-- <app-footer></app-footer> -->
+    </div>
+
+    <!-- Customizer Settings -->
+    <!-- <app-customizer-settings></app-customizer-settings> -->
+</div>

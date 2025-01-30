@@ -1,0 +1,328 @@
+<div class="test-management-setup-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Test Management Setup</mat-card-title>
+      <mat-card-subtitle>Connect and sync your test management data with our platform</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <mat-stepper [linear]="true" #stepper>
+        <!-- Tool Selection Step -->
+        <mat-step [stepControl]="toolSelectionForm">
+          <ng-template matStepLabel>Select Tool</ng-template>
+          <form [formGroup]="toolSelectionForm">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Test Management Tool</mat-label>
+              <mat-select formControlName="selectedTool" (selectionChange)="onToolSelection()">
+                <mat-option *ngFor="let tool of availableTools" [value]="tool.key">
+                  {{ tool.displayName }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="toolSelectionForm.get('selectedTool')?.hasError('required')">
+                Please select a test management tool
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Tool Description -->
+            <div class="tool-description" *ngIf="toolConfig">
+              <p><mat-icon>info</mat-icon> {{ toolConfig.description }}</p>
+            </div>
+
+            <div class="step-navigation">
+              <button mat-button matStepperNext [disabled]="!toolSelectionForm.valid">
+                Next
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Authentication Step -->
+        <mat-step [stepControl]="authForm">
+          <ng-template matStepLabel>Authenticate</ng-template>
+          <div *ngIf="selectedTool" class="auth-section">
+            <ng-container [ngSwitch]="toolConfig?.authType">
+
+              <!-- Authentication Step for Xray -->
+<ng-container *ngSwitchCase="'jira_xray'">
+  <form [formGroup]="authForm" (ngSubmit)="authenticate()">
+    <!-- Jira Domain -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Jira Domain</mat-label>
+      <input matInput formControlName="domain" required
+             placeholder="yourdomain.atlassian.net">
+      <mat-hint>Enter your Jira site URL (e.g., yourdomain.atlassian.net)</mat-hint>
+      <mat-error *ngIf="authForm.get('domain')?.hasError('required')">
+        Jira domain is required
+      </mat-error>
+      <mat-error *ngIf="authForm.get('domain')?.hasError('pattern')">
+        Must be a valid Atlassian domain ending with .atlassian.net
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email Address -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email Address</mat-label>
+      <input matInput formControlName="email" type="email" required
+             placeholder="you@company.com">
+      <mat-hint>Enter the email address associated with your Jira account</mat-hint>
+      <mat-error *ngIf="authForm.get('email')?.hasError('required')">
+        Email address is required
+      </mat-error>
+      <mat-error *ngIf="authForm.get('email')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <!-- API Token -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>API Token</mat-label>
+      <input matInput formControlName="apiKey" 
+             [type]="hideApiKey ? 'password' : 'text'" required>
+      <button mat-icon-button matSuffix (click)="hideApiKey = !hideApiKey" type="button">
+        <mat-icon>{{hideApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-hint>Enter your Jira API token</mat-hint>
+      <mat-error *ngIf="authForm.get('apiKey')?.hasError('required')">
+        API Token is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="info-box">
+      <mat-icon color="primary">info</mat-icon>
+      <span>
+        To get your API token:
+        <ol>
+          <li>Log in to your Atlassian account</li>
+          <li>Go to Account Settings > Security</li>
+          <li>Under API Token, click 'Create and manage API tokens'</li>
+          <li>Create a new token for this integration</li>
+        </ol>
+      </span>
+    </div>
+
+    <div class="form-actions">
+      <div class="button-container">
+        <button mat-stroked-button type="button" (click)="stepper.previous()">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+        <button mat-raised-button color="primary" type="submit" 
+                [disabled]="!authForm.valid || isLoading">
+          <mat-icon>lock_open</mat-icon>
+          <span>Authenticate with {{toolConfig?.displayName}}</span>
+        </button>
+      </div>
+      <!-- Loading Spinner -->
+      <mat-progress-spinner *ngIf="isLoading" 
+                          mode="indeterminate" 
+                          diameter="30">
+      </mat-progress-spinner>
+    </div>
+  </form>
+</ng-container>
+
+              <!-- Qase Authentication -->
+              <ng-container *ngSwitchCase="'api_key'">
+                <form [formGroup]="authForm" (ngSubmit)="authenticate()">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>API Key</mat-label>
+                    <input matInput formControlName="apiKey" 
+                           [type]="hideApiKey ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hideApiKey = !hideApiKey" type="button">
+                      <mat-icon>{{hideApiKey ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-hint>Enter your API Key</mat-hint>
+                    <mat-error *ngIf="authForm.get('apiKey')?.hasError('required')">
+                      API Key is required
+                    </mat-error>
+                  </mat-form-field>
+
+                  <div class="button-container">
+                    <button mat-stroked-button type="button" (click)="stepper.previous()">
+                      <mat-icon>arrow_back</mat-icon>
+                      Back
+                    </button>
+                    <button mat-raised-button color="primary" type="submit" 
+                            [disabled]="!authForm.valid || isLoading">
+                      <mat-icon>lock_open</mat-icon>
+                      <span>Authenticate with {{toolConfig?.displayName}}</span>
+                    </button>
+                  </div>
+                </form>
+              </ng-container>
+
+              <!-- TestRail Authentication -->
+              <ng-container *ngSwitchCase="'basic'">
+                <form [formGroup]="authForm" (ngSubmit)="authenticate()">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required>
+                    <mat-error *ngIf="authForm.get('username')?.hasError('required')">
+                      Username is required
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" 
+                           [type]="hidePassword ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                      <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="authForm.get('password')?.hasError('required')">
+                      Password is required
+                    </mat-error>
+                  </mat-form-field>
+
+                  <div class="button-container">
+                    <button mat-stroked-button type="button" (click)="stepper.previous()">
+                      <mat-icon>arrow_back</mat-icon>
+                      Back
+                    </button>
+                    <button mat-raised-button color="primary" type="submit" 
+                            [disabled]="!authForm.valid || isLoading">
+                      <mat-icon>lock_open</mat-icon>
+                      <span>Authenticate</span>
+                    </button>
+                  </div>
+                </form>
+              </ng-container>
+            </ng-container>
+            
+            <!-- Loading Indicator -->
+            <div class="loading-indicator" *ngIf="isLoading">
+              <mat-progress-spinner mode="indeterminate" diameter="30">
+              </mat-progress-spinner>
+              <span>{{loadingMessage}}</span>
+            </div>
+
+            <!-- Authentication Success Message -->
+            <div *ngIf="isAuthenticated" class="auth-status">
+              <mat-icon color="primary">check_circle</mat-icon>
+              <span>Successfully authenticated with {{toolConfig?.displayName}}</span>
+            </div>
+          </div>
+
+          <div class="step-navigation">
+            <button mat-button matStepperNext [disabled]="!isAuthenticated">
+              Next
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        </mat-step>
+
+        <!-- Project Selection Step -->
+        <mat-step [stepControl]="projectSelectionForm">
+          <ng-template matStepLabel>Select Project</ng-template>
+          <form [formGroup]="projectSelectionForm">
+            <div *ngIf="projects$ | async as projects" class="project-selection">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Select Project</mat-label>
+                <mat-select formControlName="projectCode" 
+                           (selectionChange)="onProjectSelection()"
+                           [disabled]="isLoading">
+                  <mat-option *ngFor="let project of projects" [value]="project.code">
+                    {{ project.title }} ({{ project.code }})
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="projectSelectionForm.get('projectCode')?.hasError('required')">
+                  Please select a project
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Project Details -->
+              <div *ngIf="selectedProject && !isLoading" class="project-details mat-elevation-z1">
+                <h3>Project Details</h3>
+                <mat-divider></mat-divider>
+                <mat-list>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon>folder</mat-icon>
+                    <div matListItemTitle>Test Cases</div>
+                    <div matListItemLine>{{ getProjectCount('cases') }} cases</div>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon>category</mat-icon>
+                    <div matListItemTitle>Test Sets</div>
+                    <div matListItemLine>{{ getProjectCount('suites') }} sets</div>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon>bug_report</mat-icon>
+                    <div matListItemTitle>Defects</div>
+                    <div matListItemLine>
+                      {{ getProjectCount('defects', 'total') }} total 
+                      ({{ getProjectCount('defects', 'open') }} open)
+                    </div>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>
+                    <mat-icon matListItemIcon>play_circle</mat-icon>
+                    <div matListItemTitle>Test Runs</div>
+                    <div matListItemLine>
+                      {{ getProjectCount('runs', 'total') }} total 
+                      ({{ getProjectCount('runs', 'active') }} active)
+                    </div>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading-indicator" *ngIf="isLoading">
+              <mat-progress-spinner mode="indeterminate" diameter="30">
+              </mat-progress-spinner>
+              <span>{{loadingMessage}}</span>
+            </div>
+
+            <div class="step-navigation">
+              <button mat-stroked-button (click)="stepper.previous()">
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button color="primary" matStepperNext 
+                      [disabled]="!projectSelectionForm.valid || isLoading">
+                Next
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Final Sync Step -->
+        <mat-step>
+          <ng-template matStepLabel>Setup Complete</ng-template>
+          <div class="setup-complete">
+            <h3>Ready to Sync</h3>
+            <p>Selected project: <strong>{{ selectedProject?.title }}</strong></p>
+            <p class="sync-warning">
+              <mat-icon color="primary">info</mat-icon>
+              This will sync all test cases, test sets, and defects from the selected project.
+            </p>
+            
+            <div class="button-container">
+              <button mat-stroked-button (click)="stepper.previous()">
+                <mat-icon>arrow_back</mat-icon>
+                Back
+              </button>
+              <button mat-raised-button color="primary" 
+                      (click)="startSync()" 
+                      [disabled]="isLoading || !selectedProject">
+                <mat-icon>sync</mat-icon>
+                <span>Start Synchronization</span>
+              </button>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading-indicator" *ngIf="isLoading">
+              <mat-progress-spinner mode="indeterminate" diameter="30">
+              </mat-progress-spinner>
+              <span>{{loadingMessage}}</span>
+            </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </mat-card-content>
+  </mat-card>
+</div>

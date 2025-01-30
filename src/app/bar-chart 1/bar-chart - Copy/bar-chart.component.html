@@ -1,0 +1,102 @@
+ <style>
+
+.tabs {
+  display: flex;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.tab {
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 5px;
+  background-color: #f2f2f2;
+  /* flex: 1; Ensures tabs fill up the entire width evenly */
+  text-align: center;
+}
+
+.tab.active {
+  background-color: #005c8f;
+  color: white;
+}
+
+
+
+/* Container styling for the bar chart */
+figure#bar-chart {
+  width: 100%;           /* Ensure the chart takes full width of container */
+  max-width: 800px;      /* Set a maximum width */
+  height: auto;
+  margin: 0 auto;        /* Center-align the figure */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tooltip styling */
+#tooltip {
+  position: absolute;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  color: #333;                                /* Text color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 0.875em;
+  pointer-events: none;                       /* Prevent cursor changes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  /* Subtle shadow */
+  z-index: 10;                                /* Ensure tooltip is on top */
+  transition: opacity 0.2s ease-in-out;       /* Smooth transition */
+}
+
+/* Style the bars */
+svg rect {
+  transition: fill 0.3s ease; /* Smooth color change on hover */
+}
+
+/* Style the circles */
+svg circle {
+  transition: r 0.2s ease; /* Smooth radius change on hover */
+}
+
+ </style>
+ 
+ <!-- Tabs -->
+  <br>
+ <div class="tabs">
+  <a href="/summary-dashboard" class="tab">Summary</a>
+  <a href="/test-excution-dashboard" class="tab">Execution</a>
+  <a href="/build-visual" class="tab">Pipelines</a>
+</div>
+
+
+<div class="chart-wrapper">
+  <!-- Chart title and description -->
+  <div class="chart-header">
+    <h2 class="chart-title">Pipeline Deployments</h2>
+    <p class="chart-description">Success and Failure Rates by Team Member</p>
+  </div>
+
+  <!-- Container for the chart -->
+  <figure id="bar-chart" class="chart-container"></figure>
+
+  <!-- Legend -->
+  <div class="chart-legend">
+    <div class="legend-item">
+      <span class="legend-color" style="background-color: #69b3a2"></span>
+      <span>Successful Builds</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color" style="background-color: #ff6347"></span>
+      <span>Failed Builds</span>
+    </div>
+  </div>
+
+  <!-- Tooltip for displaying additional information -->
+  <div id="tooltip" class="tooltip"></div>
+</div>

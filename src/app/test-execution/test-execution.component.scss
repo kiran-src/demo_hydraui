@@ -1,0 +1,368 @@
+/* test-execution.component.scss */
+
+// Variables
+$primary-color: #1976d2;
+$accent-color: #ff4081;
+$warning-color: #ff9800;
+$error-color: #f44336;
+$success-color: #4caf50;
+$background-light: #f8f9fa;
+$background-dark: #1e1e1e;
+$text-light: rgba(0, 0, 0, 0.87);
+$text-secondary: rgba(0, 0, 0, 0.6);
+
+// Container and Layout
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  position: relative;
+
+  .main-card {
+    margin-bottom: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .mat-mdc-card-header {
+      padding: 1.5rem 1.5rem 0;
+      
+      .mat-mdc-card-title {
+        font-size: 1.5rem;
+        color: $primary-color;
+      }
+
+      .mat-mdc-card-subtitle {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .mat-mdc-card-content {
+      padding: 1.5rem;
+    }
+  }
+}
+
+// Form Styles
+.form-container {
+  .form-section {
+    background: $background-light;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+
+    h3 {
+      color: $primary-color;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin: 0 0 1.5rem;
+    }
+
+    .full-width {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      mat-form-field {
+        flex: 1;
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+
+      .validate-button {
+        min-width: 150px;
+        
+        .mat-icon {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+// Step Navigation
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+
+  button {
+    min-width: 120px;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    .mat-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+// Execution Status Styles
+.execution-status {
+  .status-card {
+    margin-bottom: 1.5rem;
+
+    .status-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        
+        &.queued { background-color: #757575; }
+        &.running { 
+          background-color: $primary-color;
+          animation: pulse 1.5s infinite;
+        }
+        &.completed { background-color: $success-color; }
+        &.failed { background-color: $error-color; }
+        &.cancelled { background-color: $warning-color; }
+        &.timeout { background-color: #9c27b0; }
+      }
+    }
+
+    .status-details {
+      margin-top: 1rem;
+      
+      p {
+        margin: 0.5rem 0;
+        color: $text-light;
+        
+        strong {
+          color: $text-secondary;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .logs-card {
+    margin-bottom: 1.5rem;
+
+    .logs-container {
+      height: 400px;
+      overflow-y: auto;
+      background: $background-dark;
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+
+      .log-entry {
+        padding: 0.25rem 0;
+        display: flex;
+        align-items: flex-start;
+        color: white;
+
+        .log-timestamp {
+          flex-shrink: 0;
+          width: 85px;
+          color: #888;
+          margin-right: 1rem;
+        }
+
+        .log-message {
+          flex-grow: 1;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+
+        &.log-level-info {
+          color: #4fc3f7;
+        }
+
+        &.log-level-warning {
+          color: #ffb74d;
+        }
+
+        &.log-level-error {
+          color: #ef5350;
+        }
+      }
+
+      .no-logs {
+        color: #888;
+        text-align: center;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+
+        .mat-icon {
+          font-size: 2rem;
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+}
+
+// Loading States
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .loading-text {
+    margin-top: 1rem;
+    color: $primary-color;
+    font-weight: 500;
+  }
+}
+
+.button-spinner {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+// Connection Status
+.connection-status {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: #323232;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+
+  .mat-icon {
+    color: $warning-color;
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba($primary-color, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba($primary-color, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba($primary-color, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Material Stepper Customization
+::ng-deep {
+  .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+  }
+
+  .mat-step-header {
+    .mat-step-icon-selected {
+      background-color: $primary-color;
+    }
+
+    .mat-step-icon-state-done {
+      background-color: $success-color;
+    }
+
+    .mat-step-label {
+      &.mat-step-label-selected {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .mat-stepper-horizontal-line {
+    border-top-color: rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Dark Theme Support
+@media (prefers-color-scheme: dark) {
+  .form-section {
+    background-color: #2d2d2d;
+  }
+
+  .status-details p {
+    color: rgba(255, 255, 255, 0.87);
+    
+    strong {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .main-card {
+    background: #424242;
+    color: white;
+  }
+
+  .loading-overlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0 !important;
+  }
+
+  .step-actions {
+    flex-direction: column;
+    gap: 1rem;
+
+    button {
+      width: 100%;
+      margin-right: 0 !important;
+    }
+  }
+
+  .logs-container {
+    height: 300px !important;
+  }
+}

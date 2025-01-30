@@ -1,0 +1,54 @@
+<mat-card
+    class="qot-card profile-card mb-25 border-radius bg-white border-none d-block"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <mat-card-header>
+        <mat-card-title>
+            <h5 class="mt-0 mb-0">Profile Intro</h5>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="user d-flex align-items-center">
+            <div class="image">
+                <img src="assets/images/profile.jpg" class="rounded-circle" alt="profile-image" />
+            </div>
+            <div class="title">
+                <span class="d-block fw-medium">Themba Nkosi</span>
+                <span class="d-block text-body">themba.nkosi&#64;example.com</span>
+            </div>
+        </div>
+        <span class="sub-title d-block fw-medium">About Me</span>
+        <p>
+            Recent B.Optom graduate from the University of KwaZulu-Natal, passionate about pediatric optometry and
+            contact lens fitting. Seeking an internship opportunity to apply my theoretical knowledge in a practical
+            setting. Fluent in English, isiZulu, and Afrikaans, enabling effective communication with diverse patient
+            populations.
+        </p>
+        <h5>Social Profile</h5>
+        <div class="socials-link">
+            <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                class="linkedin d-inline-block text-center position-relative rounded-circle"
+                aria-label="LinkedIn Profile"
+            >
+                <i class="ri-linkedin-fill"></i>
+            </a>
+            <a
+                href="https://www.researchgate.net/"
+                target="_blank"
+                class="researchgate d-inline-block text-center position-relative rounded-circle"
+                aria-label="ResearchGate Profile"
+            >
+                <i class="ri-book-fill"></i>
+            </a>
+            <a
+                href="mailto:themba.nkosi@example.com"
+                class="mail d-inline-block text-center position-relative rounded-circle"
+                aria-label="Email Contact"
+            >
+                <i class="ri-mail-fill"></i>
+            </a>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,325 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+
+body {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.tabs {
+    display: flex;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.tab {
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 5px;
+    background-color: #f2f2f2;
+    /* flex: 1; Ensures tabs fill up the entire width evenly */
+    text-align: center;
+}
+
+.tab.active {
+    background-color: #005c8f;
+    color: white;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.pipeline-card {
+    background-color: white;
+    padding: 20px;
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row with gap */
+    min-width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.pipeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.status-failed {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    min-width: 80px;
+}
+
+.pipeline-info {
+    font-size: 10px;
+    color: #333;
+}
+
+.new-pipeline {
+    background-color: #005c8f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    position: absolute;
+    top: 18%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.container {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f0f2f5;
+}
+
+thead th {
+    text-align: left;
+    padding: 10px;
+    color: #666;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+tbody td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.building {
+    background-color: #e0f7fa;
+    color: #0097a7;
+}
+
+.completed {
+    background-color: #e0fbe0;
+    color: #43a047;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.view-btn {
+    color: #f4b400;
+}
+
+.edit-btn {
+    color: #5f6368;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    background-color: #005c8f;
+    transition: background-color 0.3s ease;
+    margin-right: 8px;
+}
+
+.action-btn:hover {
+    background-color: #004670;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+    }
+
+    .pipeline-card {
+        min-width: 100%;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+        
+
+
+    </style>
+    
+    <body>
+    
+       <!-- Tabs -->
+       <div class="tabs">
+        <a href="/summary-dashboard" class="tab">Summary</a>
+        <a href="/test-excution-dashboard" class="tab">Execution</a>
+        <a href="/pipeline" class="tab active">Pipelines</a>
+    </div>
+  <!-- New Pipeline Button -->
+  <!-- <a href="/create-pipeline" class="new-pipeline">+ New Pipeline</a> -->
+    
+    
+
+  
+   
+      <!-- Cards and New Pipeline Button -->
+  <div class="card-container">
+  <div class="pipeline-card">
+  <div class="pipeline-header">
+  <h5>Pipeline 1</h5>
+  <span>...</span>
+  </div>
+  <div class="status-failed">Failed</div>
+  <div class="pipeline-info">
+  <p>Version: 1.0</p>
+  <p>Last run: 29 Aug 2024</p>
+  </div>
+  </div>
+   
+          <div class="pipeline-card">
+  <div class="pipeline-header">
+  <h5>Pipeline 2</h5>
+  <span>...</span>
+  </div>
+  <div class="status-failed">Failed</div>
+  <div class="pipeline-info">
+  <p>Version: 1.0</p>
+  <p>Last run: 29 Aug 2024</p>
+  </div>
+  </div>
+   
+          <div class="pipeline-card">
+  <div class="pipeline-header">
+  <h5>Pipeline 3</h5>
+  <span>...</span>
+  </div>
+  <div class="status-failed">Failed</div>
+  <div class="pipeline-info">
+  <p>Version: 1.0</p>
+  <p>Last run: 29 Aug 2024</p>
+  </div>
+  </div>
+  </div>
+   
+<!-- Graphs -->
+
+
+
+
+
+
+
+      
+        <br><br>
+        <!-- RECENT RUNS -->
+        
+
+    <div class="container">
+        <h2>Recent Runs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>RunId</th>
+                    <th>Pipeline Name</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#001</td>
+                    <td>Merged PR to Main</td>
+                    <td>3h 23m 40s</td>
+                    <td><span class="status building">Building</span></td>
+                    <td>
+                        <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#876368</td>
+                    <td>Run Web regression</td>
+                    <td>2h 10m 23s</td>
+                    <td><span class="status building">Building</span></td>
+                    <td>
+                        <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#876412</td>
+                    <td>Run mobile Regression</td>
+                    <td>1h 05m 1s</td>
+                    <td><span class="status completed">Completed</span></td>
+                    <td>
+                        <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+
+        

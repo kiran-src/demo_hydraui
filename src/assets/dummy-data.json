@@ -1,0 +1,59 @@
+
+{
+    "projects": [
+      {
+        "id": 1,
+        "name": "E-commerce Platform",
+        "testCases": 150,
+        "passRate": 85,
+        "executionTime": 3600
+      },
+      {
+        "id": 2,
+        "name": "Mobile Banking App",
+        "testCases": 200,
+        "passRate": 92,
+        "executionTime": 4800
+      },
+      {
+        "id": 3,
+        "name": "CRM System",
+        "testCases": 180,
+        "passRate": 78,
+        "executionTime": 4200
+      }
+    ],
+    "testExecutions": [
+      {"date": "2023-01-01", "passed": 120, "failed": 30},
+      {"date": "2023-01-02", "passed": 135, "failed": 15},
+      {"date": "2023-01-03", "passed": 140, "failed": 10},
+      {"date": "2023-01-04", "passed": 130, "failed": 20},
+      {"date": "2023-01-05", "passed": 145, "failed": 5}
+    ],
+    "defectSeverity": [
+      {"severity": "Critical", "count": 5},
+      {"severity": "High", "count": 15},
+      {"severity": "Medium", "count": 30},
+      {"severity": "Low", "count": 50}
+    ],
+    "testCasesByType": [
+      {"type": "Functional", "count": 200},
+      {"type": "Performance", "count": 50},
+      {"type": "Security", "count": 30},
+      {"type": "Usability", "count": 20}
+    ],
+    "defects": [
+    {"id": 1, "description": "Login button unresponsive on mobile devices"},
+    {"id": 2, "description": "Payment processing fails for international transactions"},
+    {"id": 3, "description": "Search function returns incorrect results"},
+    {"id": 4, "description": "User profile picture upload fails"},
+    {"id": 5, "description": "Cart items disappear after session timeout"},
+    {"id": 6, "description": "Product images not loading on slow connections"},
+    {"id": 7, "description": "Checkout process hangs on address validation"},
+    {"id": 8, "description": "Password reset email not received"},
+    {"id": 9, "description": "Mobile app crashes when accessing order history"},
+    {"id": 10, "description": "Incorrect tax calculation for multi-state orders"}
+  ]
+}
+
+    

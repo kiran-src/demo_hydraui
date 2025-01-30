@@ -1,0 +1,47 @@
+<div class="confirm-email-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div
+                class="qot-form ml-auto mr-auto border-radius bg-white"
+                [class.card-borderd-theme]="themeService.isCardBorder()"
+                [class.component-dark-theme]="themeService.isDark()"
+            >
+                <div class="title text-center">
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="logo" />
+                    </div>
+                    <h1>Welcome To QoT</h1>
+                    <!-- <p class="ml-auto mr-auto">
+                        Your mail is verified! Your account is now safe from unwanted activities.
+                    </p> -->
+                    <h4>Verify Your Email</h4>
+                    <p>
+                        We've sent a verification email to your address.
+                        <br />
+                        Please check your inbox and click the verification link.
+                    </p>
+
+                    <button class="mb-10" mat-raised-button color="primary" (click)="recheckVerification()">
+                        Check again, I've verified my email
+                    </button>
+                    <!-- <a routerLink="/login">Back to Login</a> -->
+                    <br />
+                    <button class="mb-10" mat-raised-button color="accent" (click)="resendVerificationEmail()">
+                        Resend Verification Email
+                    </button>
+                    <br />
+                    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+                </div>
+            </div>
+            <!-- <div class="admin text-center">
+                    <div class="logo position-relative text-success rounded-circle">
+                        <i class="material-symbols-outlined">done</i>
+                    </div>
+                    <span class="d-block fw-medium">
+                        Your Email Verified
+                        <span class="text-success">Successfully!</span>
+                    </span> 
+                </div>-->
+        </div>
+    </div>
+</div>

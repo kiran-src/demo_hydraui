@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Error Details</h2>
+    <mat-dialog-content>
+      <pre>{{getErrorDetails()}}</pre>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Close</button>
+      <button mat-button (click)="copyToClipboard()">
+        Copy to Clipboard
+      </button>
+    </mat-dialog-actions>

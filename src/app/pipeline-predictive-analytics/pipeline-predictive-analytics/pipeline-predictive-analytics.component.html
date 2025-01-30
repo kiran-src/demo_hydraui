@@ -1,0 +1,29 @@
+<div class="tabs">
+  <a href="/daily-build-trend" class="tab active">Daily Build Trend</a>
+  <a href="/global-prediction" class="tab">Global Prediction</a>
+  <a href="/pipeline-predictive" class="tab">Pipeline Analytics</a>
+</div>
+
+<div class="chart-filters">
+  <label for="dateRange">Filter by Date Range:</label>
+  <select id="dateRange">
+      <option value="lastWeek">Last Week</option>
+      <option value="lastMonth">Last Month</option>
+      <option value="lastYear">Last Year</option>
+  </select>
+</div>
+
+<div class="chart-container build-time-container">
+  <h2>Build Time Prediction</h2>
+  <div id="buildTimeChart"></div>
+</div>
+
+<div class="chart-container build-success-container">
+  <h2>Build Success/Failure Prediction</h2>
+  <div id="buildSuccessChart"></div>
+</div>
+
+<div class="chart-container test-pass-container">
+  <h2>Test Pass Prediction</h2>
+  <div id="testPassChart"></div>
+</div>

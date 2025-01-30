@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Test Execution Timeline</mat-card-title>
+    <div class="timeline-controls">
+      <mat-button-toggle-group
+        [value]="timeframe"
+        (change)="onTimeframeChange($event.value)">
+        <mat-button-toggle value="daily">Daily</mat-button-toggle>
+        <mat-button-toggle value="weekly">Weekly</mat-button-toggle>
+        <mat-button-toggle value="monthly">Monthly</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="chart-container"
+         #chart
+         (window:resize)="onResize({width: chart.offsetWidth, height: chart.offsetHeight})">
+    </div>
+  </mat-card-content>
+</mat-card>

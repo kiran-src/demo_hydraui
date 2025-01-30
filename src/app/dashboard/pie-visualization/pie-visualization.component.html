@@ -1,0 +1,96 @@
+<mat-card class="visualization-card">
+  <mat-card-header>
+    <mat-card-title>Pipeline Dashboard</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="visualization-container">
+      <div class="chart-container">
+        <div class="gauge-chart-container">
+          <h3>Build Success Rate</h3>
+          <div id="gauge-chart-id"></div>
+          <div class="percentage-display">
+            <h4>{{ selectedSlice.type }} Rate: {{ selectedSlice.percentage }}%</h4>
+          </div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="pie-chart-container">
+          <!-- Removed the Build Failure Rate heading and its percentage display -->
+          <div id="pie-chart"></div>
+          <!-- This line has been removed -->
+          <!-- <div class="percentage-display"> -->
+          <!--   <h4>Failure Rate: {{ selectedSlice.percentage }}%</h4> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="details-panel" [class.open]="selectedBuild" #detailsPanel>
+      <div class="details-header" *ngIf="selectedBuild">
+        <h2>Build Details</h2>
+        <button mat-icon-button (click)="closeDetails()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="details-content" *ngIf="selectedBuild">
+        <div class="build-status" [class]="selectedBuild.result.toLowerCase()">
+          <mat-icon>{{ getStatusIcon(selectedBuild.result) }}</mat-icon>
+          <span>{{ selectedBuild.result }}</span>
+        </div>
+        <div class="details-section">
+          <h3>General Information</h3>
+          <div class="detail-item">
+            <span class="label">Build Number:</span>
+            <span class="value">{{ selectedBuild.buildNumber }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Status:</span>
+            <span class="value">{{ selectedBuild.status }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Priority:</span>
+            <span class="value">{{ selectedBuild.priority }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Reason:</span>
+            <span class="value">{{ selectedBuild.reason }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Revision:</span>
+            <span class="value">{{ selectedBuild.buildNumberRevision }}</span>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h3>Timing Information</h3>
+          <div class="detail-item">
+            <span class="label">Queue Time:</span>
+            <span class="value">{{ formatDate(selectedBuild.queueTime) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Start Time:</span>
+            <span class="value">{{ formatDate(selectedBuild.startTime) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Finish Time:</span>
+            <span class="value">{{ formatDate(selectedBuild.finishTime) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Queue Duration:</span>
+            <span class="value">{{ calculateQueueDuration(selectedBuild) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Build Duration:</span>
+            <span class="value">{{ calculateBuildDuration(selectedBuild) }}</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-button (click)="openBuildUrl(selectedBuild)">Open Build</button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+

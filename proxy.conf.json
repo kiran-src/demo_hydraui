@@ -1,0 +1,19 @@
+{
+    "/api": {
+      "target": "https://primary:pzkjD8kjujDbj6DmT1tqkNi4hr28v8gKewpdxn4xNsTdCRfGED5vh5YevgYzMU0T@hydraspring.test.azuremicroservices.io/apibackend/default",
+      "secure": false,
+      "changeOrigin": true
+    },
+    
+    "/jenkins": {
+        "target": "http://localhost:8080",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/jenkins": ""
+        }
+    }
+    
+  }
+  

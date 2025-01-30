@@ -1,0 +1,138 @@
+// @import '../../styles.scss';
+// @import '../../../../styles.scss';
+
+.stat-item {
+    border-color: #dae0ec;
+    padding: 20px;
+    
+    h5 {
+        margin-bottom: 10px;
+    }
+    .number {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+    .chart {
+        top: 50%;
+        right: 15px;
+        max-width: 150px;
+        text-align: right;
+        margin-top: -12px;
+        position: absolute;
+        transform: translateY(-50%);
+    }
+}
+
+.qot-card {
+    &.most-leads-card {
+        .mat-mdc-card-content {
+            padding: 20px;
+
+            .leads-list {
+                margin-top: 0;
+
+                li {
+                    border-bottom: 1px dashed #e0e0e0;
+                    padding: {
+                        top: 14.5px;
+                        bottom: 14.5px;
+                    }
+                    .title {
+                        .icon {
+                            width: 50px;
+                            height: 50px;
+                            margin-right: 12px;
+                            color: var(--qotColor);
+
+                            i {
+                                left: 0;
+                                right: 0;
+                                top: 50%;
+                                font-size: 24px;
+                                position: absolute;
+                                transform: translateY(-50%);
+                            }
+                        }
+                    }
+                    &:last-child {
+                        border-bottom: 0;
+                        padding-bottom: 0;
+                    }
+                    &:first-child {
+                        padding-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .mat-mdc-card {
+        &.qot-card {
+            &.most-leads-card {
+                .mat-mdc-card-content {
+                    svg {
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 767px) {
+    .stat-item {
+        padding: 15px;
+        border-bottom: 1px solid #dae0ec;
+        
+        h5 {
+            margin-bottom: 7px;
+        }
+        .number {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .chart {
+            top: 0;
+            right: 0;
+            max-width: 100%;
+            text-align: left;
+            position: relative;
+            transform: translateY(0);
+            margin: {
+                top: 15px;
+                bottom: -30px;
+            };
+        }
+    }
+
+    .qot-card {
+        &.most-leads-card {
+            .mat-mdc-card-content {
+                .leads-list {
+                    li {
+                        padding: {
+                            top: 10px;
+                            bottom: 10px;
+                        }
+                        .title {
+                            .icon {
+                                width: 40px;
+                                height: 40px;
+                                margin-right: 10px;
+
+                                i {
+                                    font-size: 22px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Add more responsive styles as needed */

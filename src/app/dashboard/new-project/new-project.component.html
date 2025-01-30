@@ -1,0 +1,38 @@
+<div class="new-project-form">
+    <h2>Create New Project</h2>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="mobile">Mobile</mat-option>
+          <mat-option value="web">Web</mat-option>
+          <mat-option value="desktop">Desktop</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <h3>What Will You Use Hydra For?</h3>
+      <div class="checkbox-group">
+        <mat-checkbox formControlName="dataAnalytics">Data analytics</mat-checkbox>
+        <mat-checkbox formControlName="securityTesting">Security testing</mat-checkbox>
+        <mat-checkbox formControlName="aiScripting">AI Scripting</mat-checkbox>
+        <mat-checkbox formControlName="centralizeTestData">Centralize test data</mat-checkbox>
+        <mat-checkbox formControlName="reporting">Reporting</mat-checkbox>
+        <mat-checkbox formControlName="chatbotTestTriggers">Chat bot test triggers</mat-checkbox>
+        <mat-checkbox formControlName="executeTestAutomation">Execute test automation</mat-checkbox>
+        <mat-checkbox formControlName="testCaseGeneration">Test case generation</mat-checkbox>
+        <mat-checkbox formControlName="testManagement">Test Management</mat-checkbox>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="projectForm.invalid">Create Project</button>
+    </form>
+  </div>

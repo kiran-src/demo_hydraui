@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipeline Creation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d2d49;
+            margin-bottom: 20px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            background-color: #005c8f;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .progress {
+            width: 60px;
+            height: 4px;
+            background-color: #e0e0f0;
+            position: relative;
+            top: -10px;
+        }
+
+        .checkmark {
+            margin: 30px 0;
+        }
+
+        .checkmark img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .description {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d2d49;
+            margin-bottom: 15px;
+        }
+
+        .sub-description {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #005c8f;
+            color: white;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .prev-button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 2px solid #d9d9ff;
+            background-color: #fff;
+            color: #005c8f;
+            cursor: pointer;
+        }
+
+        .prev-button:hover {
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">Test Completed</div>
+
+    <div class="steps">
+        <div class="step">1</div>
+        <div class="progress"></div>
+        <div class="step">2</div>
+        <div class="progress"></div>
+        <div class="step">3</div>
+        
+        
+    </div>
+
+    <div class="checkmark">
+        <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="Checkmark">
+    </div>
+
+    <div class="description">Pipeline creation steps Completed</div>
+    <div class="sub-description">Please review all the information you previously typed in the past steps, and if all is okay, click Submit to save.</div>
+
+    <button class="button">View Report</button>
+
+    <div>
+        
+    </div>
+    <br>
+    <!-- <a href="/setup-yaml2"><button class="button" id="nextStepButton">Submit</button></a> -->
+</div>
+
+</body>
+</html>

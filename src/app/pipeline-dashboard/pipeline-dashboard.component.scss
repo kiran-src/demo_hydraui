@@ -1,0 +1,149 @@
+.pipeline-dashboard-container {
+  height: 100%;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    margin-bottom: 24px;
+
+    .title-section {
+      h2 {
+        margin: 0 0 16px;
+        font-size: 20px;
+        font-weight: 500;
+        color: #333333;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+
+        .metric {
+          background: #f8f9fa;
+          padding: 12px;
+          border-radius: 8px;
+          text-align: center;
+
+          .label {
+            display: block;
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 4px;
+          }
+
+          .value {
+            font-size: 24px;
+            font-weight: 500;
+            color: #333333;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 0;
+
+    .chart-container {
+      flex: 1;
+      min-height: 300px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+    }
+
+    .status-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+
+      .summary-item {
+        padding: 16px;
+        border-radius: 8px;
+        text-align: center;
+        color: #ffffff;
+
+        &.passed {
+          background: #4CAF50;
+        }
+
+        &.failed {
+          background: #F44336;
+        }
+
+        &.skipped {
+          background: #FFC107;
+          color: #333333;
+        }
+
+        &.running {
+          background: #2196F3;
+        }
+
+        .value {
+          display: block;
+          font-size: 24px;
+          font-weight: 500;
+          margin-bottom: 4px;
+        }
+
+        .label {
+          display: block;
+          font-size: 14px;
+          margin-bottom: 4px;
+        }
+
+        .percentage {
+          font-size: 12px;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .resource-metrics {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 8px;
+
+      h3 {
+        margin: 0 0 16px;
+        font-size: 16px;
+        color: #333333;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+
+        .metric-item {
+          padding: 12px;
+          background: #ffffff;
+          border-radius: 4px;
+
+          .label {
+            display: block;
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 4px;
+          }
+
+          .value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333333;
+          }
+        }
+      }
+    }
+  }
+}

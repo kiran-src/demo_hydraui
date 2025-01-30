@@ -1,0 +1,59 @@
+<div class="pipeline-dashboard-container">
+    <div class="header">
+      <div class="title-section">
+        <h2>Pipeline Executions</h2>
+        <div class="metrics">
+          <div class="metric">
+            <span class="label">Success Rate</span>
+            <span class="value">{{ getSuccessRate() }}%</span>
+          </div>
+          <div class="metric">
+            <span class="label">Active Runs</span>
+            <span class="value">{{ data?.activeRuns || 0 }}</span>
+          </div>
+          <div class="metric">
+            <span class="label">Total Executions</span>
+            <span class="value">{{ getTotalExecutions() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div #chartContainer class="chart-container">
+        <!-- D3 chart will be rendered here -->
+      </div>
+
+      <div class="status-summary">
+        <div class="summary-item" 
+             *ngFor="let status of getStatusDistribution()"
+             [class]="status.status.toLowerCase()">
+          <span class="value">{{ status.count }}</span>
+          <span class="label">{{ formatStatus(status.status) }}</span>
+          <span class="percentage">{{ getStatusPercentage(status) }}%</span>
+        </div>
+      </div>
+
+      <div class="resource-metrics" *ngIf="data?.resourceMetrics">
+        <h3>Resource Utilization</h3>
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <span class="label">Agent Name</span>
+            <span class="value">{{ data.resourceMetrics.agentName }}</span>
+          </div>
+          <div class="metric-item">
+            <span class="label">Agent Pool</span>
+            <span class="value">{{ data.resourceMetrics.agentPool }}</span>
+          </div>
+          <div class="metric-item">
+            <span class="label">CPU Usage</span>
+            <span class="value">{{ data.resourceMetrics.cpuUsage }}%</span>
+          </div>
+          <div class="metric-item">
+            <span class="label">Memory Usage</span>
+            <span class="value">{{ data.resourceMetrics.memoryUsage }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

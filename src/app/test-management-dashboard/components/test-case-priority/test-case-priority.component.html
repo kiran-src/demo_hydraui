@@ -1,0 +1,11 @@
+<app-metric-card
+  title="Test Case Priority Distribution"
+  [loading]="loading"
+  [error]="error">
+  
+  <div class="chart-container"
+       #chart
+       appResizeObserver
+       (sizeChange)="onResize($event)">
+  </div>
+</app-metric-card>

@@ -1,0 +1,373 @@
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+    
+    /* Sidebar Styles */
+    .sidebar {
+        width: 250px;
+        background-color: white;
+        color: white;
+        padding: 20px;
+        position: fixed;
+        height: 100vh;
+    }
+    
+    .sidebar h2 {
+        color: black;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .dropdown-section {
+        margin-bottom: 20px;
+    }
+    
+    .dropdown-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    .dropdown-btn:after {
+        content: '▼';
+        float: right;
+        font-size: 12px;
+    }
+    
+    .dropdown-content {
+        display: none;
+        background-color: white;
+        color: black;
+        padding-left: 10px;
+    }
+    
+    .dropdown-content a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+    
+    .dropdown-btn.active:after {
+        content: '▲';
+    }
+    
+    /* Main Content */
+    .main-content {
+        margin-left: 260px;
+        padding: 20px;
+        flex: 1;
+    }
+    
+    .table-header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+    
+    .table-actions button {
+        padding: 10px 15px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .new-pipeline-btn {
+        background-color:  #007bff;
+        color: white;
+    }
+    
+    .search-input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 200px;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+    
+    /* Table Styles */
+    .builds-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .builds-table thead {
+        background-color: #007bff;
+        color: white;
+    }
+    
+    .builds-table th, .builds-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+    
+    .builds-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    .builds-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    
+    /* Triggered By Section */
+    .triggered-by {
+        display: flex;
+        align-items: center;
+    }
+    
+    .triggered-by img {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    
+    /* Status Styles */
+    .status-success {
+        color: green;
+        font-weight: bold;
+    }
+    
+    .status-failed {
+        color: red;
+        font-weight: bold;
+    }
+    
+    .status-inprogress {
+        color: orange;
+        font-weight: bold;
+    }
+    
+    /* Dropdown Styles */
+    .ellipsis-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 120px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    
+    .dropdown-content a {
+        color: black;
+        padding: 10px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+    
+    .dropdown.show .dropdown-content {
+        display: block;
+    }
+    
+    
+    
+    </style>
+    
+    <div class="container">
+        <!-- Sidebar with Branches -->
+        <div class="sidebar">
+            <h2>Branches</h2>
+            <div class="dropdown-section">
+                <button class="dropdown-btn">Chat Bot Triggers</button>
+                <div class="dropdown-content">
+                    <a href="#">Trigger 1</a>
+                    <a href="#">Trigger 2</a>
+                    <a href="#">Trigger 3</a>
+                </div>
+            </div>
+    
+            <div class="dropdown-section">
+                <button class="dropdown-btn">Hydra Endpoints</button>
+                <div class="dropdown-content">
+                    <a href="#">Endpoint 1</a>
+                    <a href="#">Endpoint 2</a>
+                    <a href="#">Endpoint 3</a>
+                </div>
+            </div>
+    
+            <div class="dropdown-section">
+                <button class="dropdown-btn">Hydra Automation</button>
+                <div class="dropdown-content">
+                    <a href="#">Automation 1</a>
+                    <a href="#">Automation 2</a>
+                    <a href="#">Automation 3</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Main Content - Builds Table -->
+        <div class="main-content">
+            <div class="table-header">
+                <div class="table-actions">
+                    <input type="text" placeholder="Search...🔍" class="search-input">
+                    <button class="new-pipeline-btn">+ New Pipeline</button>
+                    
+                </div>
+            </div>
+    
+            <h1>Builds Table</h1>
+    
+            <table class="builds-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Triggered By</th>
+                        <th>Duration</th>
+                        <th>Status</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Automated PR Builds</td>
+                        <td>
+                            <div class="triggered-by">
+                                <img src="https://via.placeholder.com/30" alt="Kiran Setty">
+                                Kiran Setty
+                            </div>
+                        </td>
+                        <td>15 mins</td>
+                        <td class="status-success">Success</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="ellipsis-btn">⋮</button>
+                                <div class="dropdown-content">
+                                    <a href="#">View Logs</a>
+                                    <a href="#">Cancel</a>
+                                    <a href="#">Edit</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chat test deploy</td>
+                        <td>
+                            <div class="triggered-by">
+                                <img src="https://via.placeholder.com/30" alt="Moeketsi Leiee">
+                                Moeketsi Leiee
+                            </div>
+                        </td>
+                        <td>2hr 10m</td>
+                        <td class="status-success">Success</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="ellipsis-btn">⋮</button>
+                                <div class="dropdown-content">
+                                    <a href="#">View Logs</a>
+                                    <a href="#">Cancel</a>
+                                    <a href="#">Edit</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chat test deploy</td>
+                        <td>
+                            <div class="triggered-by">
+                                <img src="https://via.placeholder.com/30" alt="Bongile Nkolonzi">
+                                Bongile Nkolonzi
+                            </div>
+                        </td>
+                        <td>1h 2m</td>
+                        <td class="status-success">Success</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="ellipsis-btn">⋮</button>
+                                <div class="dropdown-content">
+                                    <a href="#">View Logs</a>
+                                    <a href="#">Cancel</a>
+                                    <a href="#">Edit</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chat test deploy</td>
+                        <td>
+                            <div class="triggered-by">
+                                <img src="https://via.placeholder.com/30" alt="Yvonne Sekaleli">
+                                Yvonne Sekaleli
+                            </div>
+                        </td>
+                        <td>10 mins</td>
+                        <td class="status-failed">Failed</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="ellipsis-btn">⋮</button>
+                                <div class="dropdown-content">
+                                    <a href="#">View Logs</a>
+                                    <a href="#">Cancel</a>
+                                    <a href="#">Edit</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- More rows here... -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Dropdown functionality for the sidebar
+    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+    
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === 'block') {
+                dropdownContent.style.display = 'none';
+            } else {
+                dropdownContent.style.display = 'block';
+            }
+        });
+    });
+    </script>

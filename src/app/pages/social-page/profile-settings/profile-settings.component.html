@@ -1,0 +1,222 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">Profile Settings</h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">Intern Profile</li>
+        <li class="breadcrumb-item position-relative">Settings</li>
+    </ol>
+</div>
+
+<!-- Settings -->
+<div class="row">
+    <div class="col-xxl-7 col-xxxl-8">
+        <mat-card
+            class="qot-card settings-card mb-25 border-radius bg-white border-none d-block"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mt-0 mb-0">Intern Profile Settings</h5>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">First Name</label>
+                            <mat-form-field>
+                                <mat-label>First name</mat-label>
+                                <input matInput value="Themba" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Last Name</label>
+                            <mat-form-field>
+                                <mat-label>Last name</mat-label>
+                                <input matInput value="Nkosi" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Email Address</label>
+                            <mat-form-field>
+                                <mat-label>Email address</mat-label>
+                                <input matInput value="themba.nkosi@example.com" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Phone No</label>
+                            <mat-form-field>
+                                <mat-label>Phone no</mat-label>
+                                <input matInput value="+27 71 234 5678" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">HPCSA Number</label>
+                            <mat-form-field>
+                                <mat-label>HPCSA Number</mat-label>
+                                <input matInput value="OP0123456" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Graduation Date</label>
+                            <mat-form-field>
+                                <mat-label>Graduation date</mat-label>
+                                <input matInput [matDatepicker]="picker" value="2023-12-15" />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Address</label>
+                            <mat-form-field>
+                                <mat-label>Add address here</mat-label>
+                                <input matInput placeholder="E.g. 123 Glenwood Ave, Durban" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Province</label>
+                            <mat-form-field>
+                                <mat-label>Select</mat-label>
+                                <mat-select>
+                                    <mat-option value="gauteng">Gauteng</mat-option>
+                                    <mat-option value="westerncape">Western Cape</mat-option>
+                                    <mat-option value="kwazulunatal">KwaZulu-Natal</mat-option>
+                                    <mat-option value="easterncape">Eastern Cape</mat-option>
+                                    <mat-option value="freestate">Free State</mat-option>
+                                    <mat-option value="limpopo">Limpopo</mat-option>
+                                    <mat-option value="mpumalanga">Mpumalanga</mat-option>
+                                    <mat-option value="northwest">North West</mat-option>
+                                    <mat-option value="northerncape">Northern Cape</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Professional Summary</label>
+                            <mat-form-field class="textarea">
+                                <mat-label>Briefly describe your professional goals and interests</mat-label>
+                                <textarea
+                                    matInput
+                                    placeholder="E.g. I am passionate about pediatric optometry..."
+                                ></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Select Your Skills</label>
+                            <mat-form-field>
+                                <mat-label>Select</mat-label>
+                                <mat-select multiple>
+                                    <mat-option value="comprehensiveexams">Comprehensive Eye Exams</mat-option>
+                                    <mat-option value="contactlens">Contact Lens Fitting</mat-option>
+                                    <mat-option value="pediatric">Pediatric Optometry</mat-option>
+                                    <mat-option value="oculardisease">Ocular Disease Management</mat-option>
+                                    <mat-option value="lowvision">Low Vision Rehabilitation</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">University</label>
+                            <mat-form-field>
+                                <mat-label>Your university</mat-label>
+                                <input matInput value="University of KwaZulu-Natal" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">LinkedIn</label>
+                            <mat-form-field>
+                                <mat-label>LinkedIn</mat-label>
+                                <input matInput value="linkedin.com/in/themba-nkosi" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">ResearchGate</label>
+                            <mat-form-field>
+                                <mat-label>ResearchGate</mat-label>
+                                <input matInput value="researchgate.net/profile/Themba-Nkosi" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Upload Your Profile Picture</label>
+                            <file-upload class="file-uploader" [multiple]="multiple"></file-upload>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">Upload CV</label>
+                            <file-upload class="file-uploader" [multiple]="multiple"></file-upload>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-box mt-0">
+                    <button mat-button>Save Information</button>
+                    <button mat-button>Cancel</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-xxl-5 col-xxxl-4">
+        <mat-card
+            class="qot-card settings-card mb-25 border-radius bg-white border-none d-block"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mt-0 mb-0">Privacy Settings</h5>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="mb-25">
+                    <mat-checkbox>Allow potential employers to view my email</mat-checkbox>
+                    <mat-checkbox>Allow potential employers to view my phone number</mat-checkbox>
+                    <mat-checkbox>Receive notifications about new internship opportunities</mat-checkbox>
+                </div>
+                <div class="mb-25">
+                    <label class="main-label d-block lh-1 text-black">Who can view your full profile?</label>
+                    <mat-radio-group>
+                        <mat-radio-button value="1">All registered employers</mat-radio-button>
+                        <mat-radio-button value="2">Only employers I've applied to</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div>
+                    <label class="main-label d-block lh-1 text-black">Account Management</label>
+                    <p class="minus">Manage your account settings and data.</p>
+                </div>
+                <div class="btn-box">
+                    <button mat-button>Deactivate Account</button>
+                    <button mat-button>Download My Data</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+:host {
+    display: block;
+    height: 100%;
+  }
+  
+  .timeline-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px;
+  }
+  
+  .chart-container {
+    height: calc(100% - 48px);
+    position: relative;
+  }
+  
+  :host ::ng-deep {
+    .tooltip {
+      position: absolute;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: white;
+      font-size: 12px;
+      pointer-events: none;
+      z-index: 100;
+  
+      .tooltip-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+  
+      .tooltip-date {
+        font-weight: bold;
+        margin-bottom: 4px;
+        white-space: nowrap;
+      }
+  
+      .tooltip-metric {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        white-space: nowrap;
+      }
+    }
+  
+    .hover-line {
+      stroke: #666;
+      stroke-width: 1px;
+      stroke-dasharray: 4,4;
+    }
+  
+    .overlay {
+      cursor: crosshair;
+    }
+  
+    .mat-button-toggle-group {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+  
+      .mat-button-toggle {
+        color: rgba(255, 255, 255, 0.7);
+        background: transparent;
+  
+        &.mat-button-toggle-checked {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+  
+        &:hover:not(.mat-button-toggle-checked) {
+          background: rgba(255, 255, 255, 0.05);
+        }
+      }
+    }
+  }

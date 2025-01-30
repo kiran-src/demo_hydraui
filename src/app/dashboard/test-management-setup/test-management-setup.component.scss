@@ -1,0 +1,283 @@
+
+.test-management-setup-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.mat-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mat-card-header {
+  margin-bottom: 1rem;
+}
+
+.mat-card-title {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-card-subtitle {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.tool-description {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.tool-description mat-icon {
+  margin-right: 0.5rem;
+  color: #1976d2;
+}
+
+.auth-section {
+  padding: 1rem 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.button-container button {
+  min-width: 120px;
+}
+
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.loading-indicator span {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}
+
+.auth-status {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}
+
+.auth-status mat-icon {
+  margin-right: 0.5rem;
+  color: #4caf50;
+}
+
+.project-selection {
+  margin-top: 1rem;
+}
+
+.project-details {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.project-details h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.project-details .mat-list-item {
+  height: auto;
+  margin: 0.5rem 0;
+}
+
+.project-details .mat-icon {
+  margin-right: 1rem;
+  color: #1976d2;
+}
+
+.step-navigation {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.setup-complete {
+  text-align: center;
+  padding: 2rem;
+}
+
+.setup-complete h3 {
+  margin-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.sync-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+}
+
+.sync-warning mat-icon {
+  margin-right: 0.5rem;
+  color: #1976d2;
+}
+
+/* Material form field overrides */
+::ng-deep .mat-form-field-wrapper {
+  margin-bottom: 1rem;
+}
+
+::ng-deep .mat-form-field-hint {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+::ng-deep .mat-select-value {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Material stepper overrides */
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #1976d2;
+}
+
+::ng-deep .mat-step-header .mat-step-label.mat-step-label-active {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Material divider styling */
+.mat-divider {
+  margin: 0.5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .test-management-setup-container {
+    margin: 1rem;
+    padding: 0;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .button-container button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .project-details {
+    padding: 1rem;
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error state styling */
+.error-state {
+  color: #f44336;
+  margin: 0.5rem 0;
+  font-size: 12px;
+}
+
+.error-icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+/* Success state styling */
+.success-state {
+  color: #4caf50;
+  margin: 0.5rem 0;
+  font-size: 12px;
+}
+
+.success-icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.info-box {
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  mat-icon {
+    color: #1976d2;
+    margin-top: 3px;
+  }
+
+  ol {
+    margin: 0.5rem 0 0 1.5rem;
+    padding: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}
+
+.error-message {
+  color: #f44336;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  mat-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.auth-form {
+  .mat-form-field + .mat-form-field {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,88 @@
+body {
+            
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+.container {
+    max-width: 800px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.stages {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    position: relative;
+}
+.stages:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: 0;
+}
+.stage {
+    background-color: #005c8f;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    z-index: 1;
+    display: inline-block;
+    position: relative;
+}
+.stage.inactive {
+    background-color: #e0e0e0;
+    color: black;
+}
+.stage-label {
+    margin-top: 10px;
+    text-align: center;
+}
+.form-group {
+    margin-bottom: 25px;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin: 50px auto;
+}
+.button {
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #d9d9ff;
+    background-color: #fff;
+    color: #005c8f;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+.button.next {
+    background-color: #005c8f;
+    color: #fff;
+    border: none;
+}

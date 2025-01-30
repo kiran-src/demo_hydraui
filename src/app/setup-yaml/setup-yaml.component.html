@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Test</title>
+
+    <!-- Link to CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.min.css">
+    
+    
+</head>
+<body>
+
+<div class="container">
+    <h1>Run Test</h1>
+
+    <!-- Stages element -->
+    <div class="stages">
+        <div class="stage-container">
+            <div class="stage active" id="stage1">1</div>
+            <div class="stage-label">Test Config</div>
+        </div>
+        <div class="stage-container">
+            <div class="stage inactive" id="stage2">2</div>
+            <div class="stage-label">Repository</div>
+        </div>
+        <div class="stage-container">
+            <div class="stage inactive" id="stage3">3</div>
+            <div class="stage-label">Review</div>
+        </div>
+        
+    </div>
+    
+    <!-- <div class="form-group">
+        <label for="pipelineName">Pipeline Name</label>
+        <input type="text" id="pipelineName" placeholder="Enter pipeline name">
+    </div> -->
+
+    <!-- Dropdowns under YAML Config -->
+    <!-- <div class="form-group">
+        <label for="executionType">Select Execution Type:</label>
+        <select id="executionType">
+            <option value="mobile">Mobile</option>
+            <option value="web">Web</option>
+            <option value="api">API</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="automationType">Select Automation Framework</label>
+        <select id="automationType">
+            <option value="selenium">Selenium</option>
+            <option value="playright">Playright</option>
+            <option value="robot">Robot</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="projectName">Select Project Name</label>
+        <select id="projectName">
+            <option value="selenium">Hydra</option>
+            <option value="playright">Tech Titans</option>
+            <option value="robot">Penguins</option>
+        </select>
+    </div>
+ 
+    <div class="form-group">
+        <label for="numDevices">Select number of devices (max 3):</label>
+        <select id="numDevices">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+   
+    <div class="form-group">
+        <label for="webBrowser">Select Web Browser:</label>
+        <select id="webBrowser">
+            <option value="chrome">Chrome</option>
+            <option value="firefox">Firefox</option>
+            <option value="edge">Edge</option>
+            <option value="safari">Safari</option>
+        </select>
+    </div>
+   
+    <div class="form-group">
+        <label for="operatingSystem">Select Operating System:</label>
+        <select id="operatingSystem">
+            <option value="windows">Windows</option>
+            <option value="macos">MacOS</option>
+            <option value="linux">Linux</option>
+        </select>
+    </div>
+   
+    <div class="form-group">
+        <label for="environment">Select Environment:</label>
+        <select id="environment">
+            <option value="preprod">Pre Prod</option>
+            <option value="prod">Prod</option>
+            <option value="dev">Dev</option>
+            <option value="uat">UAT</option>
+        </select>
+    </div>
+   
+    <div class="form-group">
+        <label for="runTests">How to Run Tests:</label>
+        <select id="runTests">
+            <option value="scheduled">Scheduled</option>
+            <option value="manual">Manual</option>
+            <option value="auto">Automatic</option>
+        </select>
+    </div> -->
+
+    <div ng-app="myApp" ng-controller="FormController as formCtrl">
+        <div class="form-group">
+            <label for="executionType">Select Execution Type:</label>
+            <select id="executionType" ng-model="formCtrl.executionType" ng-options="type.value as type.label for type in formCtrl.executionTypes">
+                <option value="mobile">Mobile</option>
+            <option value="web">Web</option>
+            <option value="api">API</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="automationType">Select Automation Framework</label>
+            <select id="automationType" ng-model="formCtrl.automationType" ng-options="framework.value as framework.label for framework in formCtrl.automationFrameworks">
+                <option value="selenium">Selenium</option>
+            <option value="playright">Playright</option>
+            <option value="robot">Robot</option>
+            </select>
+        </div>
+    
+        <!-- <div class="form-group">
+            <label for="projectName">Select Project Name</label>
+            <select id="projectName" ng-model="formCtrl.projectName" ng-options="project.value as project.label for project in formCtrl.projects">
+                <option value="" disabled selected>Select Project Name</option>
+            </select>
+        </div> -->
+    
+        <div class="form-group">
+            <label for="numDevices">Select number of devices (max 3):</label>
+            <select id="numDevices" ng-model="formCtrl.numDevices" ng-options="device for device in formCtrl.deviceOptions">
+                <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="webBrowser">Select Web Browser:</label>
+            <select id="webBrowser" ng-model="formCtrl.webBrowser" ng-options="browser.value as browser.label for browser in formCtrl.webBrowsers">
+                <option value="chrome">Chrome</option>
+            <option value="firefox">Firefox</option>
+            <option value="edge">Edge</option>
+            <option value="safari">Safari</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="operatingSystem">Select Operating System:</label>
+            <select id="operatingSystem" ng-model="formCtrl.operatingSystem" ng-options="os.value as os.label for os in formCtrl.operatingSystems">
+                <option value="windows">Windows</option>
+            <option value="macos">MacOS</option>
+            <option value="linux">Linux</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="environment">Select Environment:</label>
+            <select id="environment" ng-model="formCtrl.environment" ng-options="env.value as env.label for env in formCtrl.environments">
+                <option value="preprod">Pre Prod</option>
+            <option value="prod">Prod</option>
+            <option value="dev">Dev</option>
+            <option value="uat">UAT</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="runTests">How to Run Tests:</label>
+            <select id="runTests" ng-model="formCtrl.runTests" ng-options="method.value as method.label for method in formCtrl.runMethods">
+                <option value="scheduled">Scheduled</option>
+            <option value="manual">Manual</option>
+            <option value="auto">Automatic</option>
+            </select>
+        </div>
+    </div>
+    
+ 
+    <!-- Navigation Buttons -->
+    <div class="button-container">
+        <a href="/create-pipeline"><button class="button" id="previousStepButton">Previous Step</button></a>
+        <a href="/setup-yaml2"><button class="button next" id="nextStepButton">Next Step</button></a>
+    </div>
+</div>
+    
+
+    
+   
+    <!-- <div class="form-group">
+        <button class="button" id="createPipelineButton">Create Pipeline</button>
+    </div> -->
+<!-- </div> -->
+
+<!-- CodeMirror JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/yaml/yaml.min.js"></script>
+
+
+</body>
+<script>
+    angular.module('myApp', [])
+.controller('FormController', function() {
+    const vm = this;
+
+    // Execution types
+    vm.executionTypes = [
+        { value: 'mobile', label: 'Mobile' },
+        { value: 'web', label: 'Web' },
+        { value: 'api', label: 'API' }
+    ];
+
+    // Automation frameworks
+    vm.automationFrameworks = [
+        { value: 'selenium', label: 'Selenium' },
+        { value: 'playright', label: 'Playright' },
+        { value: 'robot', label: 'Robot' }
+    ];
+
+    // Projects
+    vm.projects = [
+        { value: 'hydra', label: 'Hydra' },
+        { value: 'techTitans', label: 'Tech Titans' },
+        { value: 'penguins', label: 'Penguins' }
+    ];
+
+    // Number of devices
+    vm.deviceOptions = [1, 2, 3];
+
+    // Web browsers
+    vm.webBrowsers = [
+        { value: 'chrome', label: 'Chrome' },
+        { value: 'firefox', label: 'Firefox' },
+        { value: 'edge', label: 'Edge' },
+        { value: 'safari', label: 'Safari' }
+    ];
+
+    // Operating systems
+    vm.operatingSystems = [
+        { value: 'windows', label: 'Windows' },
+        { value: 'macos', label: 'MacOS' },
+        { value: 'linux', label: 'Linux' }
+    ];
+
+    // Environments
+    vm.environments = [
+        { value: 'preprod', label: 'Pre Prod' },
+        { value: 'prod', label: 'Prod' },
+        { value: 'dev', label: 'Dev' },
+        { value: 'uat', label: 'UAT' }
+    ];
+
+    // Test run methods
+    vm.runMethods = [
+        { value: 'scheduled', label: 'Scheduled' },
+        { value: 'manual', label: 'Manual' },
+        { value: 'auto', label: 'Automatic' }
+    ];
+});
+
+</script>
+</html>
+

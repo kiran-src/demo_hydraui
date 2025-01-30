@@ -1,0 +1,48 @@
+.test-case-management-container {
+    padding: 20px;
+  }
+  
+  .actions {
+    margin-bottom: 20px;
+  }
+  
+  .test-case-form {
+    margin-bottom: 20px;
+  
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+  
+  .test-cases-list {
+    .search-field {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    mat-table {
+      width: 100%;
+    }
+  
+    .mat-column-actions {
+      width: 100px;
+      text-align: center;
+    }
+  }
+  
+  .success-snackbar {
+    background: #4caf50;
+    color: white;
+  }
+  
+  .error-snackbar {
+    background: #f44336;
+    color: white;
+  }

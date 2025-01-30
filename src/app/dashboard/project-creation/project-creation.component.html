@@ -1,0 +1,126 @@
+<div class="project-creation-container">
+  <h1 class="project-title">Create New Project</h1>
+  <p class="project-description">
+    Get started with our testing tool designed to track automation runs and manage your tests seamlessly. 
+    Fill out the form below to set up your project and gain access to detailed dashboards and analytics 
+    that will help you monitor your progress and improve your testing efficiency.
+  </p>
+
+  <mat-stepper [linear]="true" #stepper class="project-stepper">
+    <mat-step [stepControl]="projectInfoForm">
+      <ng-template matStepLabel>Project Information</ng-template>
+      <form [formGroup]="projectInfoForm" class="step-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Project Name</mat-label>
+          <input matInput placeholder="Enter project name" formControlName="name">
+          <mat-error *ngIf="projectInfoForm.get('name')?.hasError('required')">Project name is required</mat-error>
+          <mat-error *ngIf="projectInfoForm.get('name')?.hasError('minlength')">Project name must be at least 3 characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Project Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="Web">Web</mat-option>
+            <mat-option value="Mobile">Mobile</mat-option>
+            <mat-option value="API">API</mat-option>
+          </mat-select>
+          <mat-error *ngIf="projectInfoForm.get('type')?.hasError('required')">Project type is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Describe your project" formControlName="description" rows="4"></textarea>
+          <mat-error *ngIf="projectInfoForm.get('description')?.hasError('required')">Description is required</mat-error>
+          <mat-error *ngIf="projectInfoForm.get('description')?.hasError('minlength')">Description must be at least 10 characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Project Tools</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Tool selection">
+            <mat-chip-row *ngFor="let tool of selectedTools" (removed)="removeProjectTool(tool)">
+              {{tool}}
+              <button matChipRemove [attr.aria-label]="'remove ' + tool">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input placeholder="New tool..."
+                   [matChipInputFor]="chipGrid"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="addProjectTool($event)">
+          </mat-chip-grid>
+        </mat-form-field>
+
+        <div class="step-actions">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="servicesForm">
+      <ng-template matStepLabel>Services</ng-template>
+      <form [formGroup]="servicesForm" class="step-form">
+        <h2>What Will You Use Hydra For?</h2>
+        <mat-selection-list formControlName="selectedServices" class="services-list">
+          <mat-list-option *ngFor="let service of availableServices" [value]="service">
+            {{service}}
+          </mat-list-option>
+        </mat-selection-list>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Test Management</ng-template>
+      <h2>Integrate with Your Test Management Tool</h2>
+      <div class="tool-options">
+        <mat-card *ngFor="let tool of testManagementTools" class="tool-card">
+          <mat-card-header>
+            <div mat-card-avatar [style.background-image]="'url(' + tool.logo + ')'" class="tool-logo"></div>
+            <mat-card-title>{{tool.name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{tool.description}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="connectTool(tool.name)" [disabled]="isLoading">
+              <mat-spinner *ngIf="isLoading && selectedTool === tool.name" diameter="20"></mat-spinner>
+              <span *ngIf="!isLoading || selectedTool !== tool.name">Connect</span>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    
+      <div class="sync-section" *ngIf="selectedTool">
+        <h3>Sync Test Data</h3>
+        <button mat-raised-button color="primary" (click)="syncData()" [disabled]="isImporting">
+          <mat-spinner *ngIf="isImporting" diameter="20"></mat-spinner>
+          <span *ngIf="!isImporting">Sync Data</span>
+        </button>
+        <mat-slide-toggle [(ngModel)]="backgroundSync" (change)="toggleBackgroundSync()">
+          Enable background sync
+        </mat-slide-toggle>
+      </div>
+    
+      <div class="step-actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Finalize</ng-template>
+      <h2>Project Creation Complete</h2>
+      <p>Your project has been successfully created and connected to your chosen test management tool.</p>
+      <div class="step-actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" (click)="finishProjectCreation()" [disabled]="isLoading">
+          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+          <span *ngIf="!isLoading">Finish</span>
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
