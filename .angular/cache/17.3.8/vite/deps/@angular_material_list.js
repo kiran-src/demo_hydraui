@@ -21,14 +21,14 @@ import {
   coerceNumberProperty
 } from "./chunk-E3OGXLVR.js";
 import {
+  SelectionModel
+} from "./chunk-7I6II3U3.js";
+import {
   A,
   ENTER,
   SPACE,
   hasModifierKey
 } from "./chunk-CJNMZQC3.js";
-import {
-  SelectionModel
-} from "./chunk-7I6II3U3.js";
 import {
   CommonModule,
   NgTemplateOutlet

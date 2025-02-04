@@ -30,6 +30,7 @@ import {
   Directionality,
   normalizePassiveListenerOptions
 } from "./chunk-E3OGXLVR.js";
+import "./chunk-7I6II3U3.js";
 import {
   DOWN_ARROW,
   ENTER,
@@ -40,7 +41,6 @@ import {
   UP_ARROW,
   hasModifierKey
 } from "./chunk-CJNMZQC3.js";
-import "./chunk-7I6II3U3.js";
 import {
   CommonModule,
   DOCUMENT

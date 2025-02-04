@@ -59,6 +59,7 @@ import {
   coerceStringArray,
   normalizePassiveListenerOptions
 } from "./chunk-E3OGXLVR.js";
+import "./chunk-7I6II3U3.js";
 import {
   BACKSPACE,
   DOWN_ARROW,
@@ -74,7 +75,6 @@ import {
   UP_ARROW,
   hasModifierKey
 } from "./chunk-CJNMZQC3.js";
-import "./chunk-7I6II3U3.js";
 import {
   CommonModule,
   DOCUMENT,

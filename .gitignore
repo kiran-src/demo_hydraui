@@ -1,0 +1,14 @@
+# Ignore the dist folder
+dist/
+dist.zip
+
+# Node modules (common in JavaScript projects)
+node_modules/
+
+# Angular cache and build artifacts
+.angular/
+
+# IDE and OS-specific files
+.vscode/
+.DS_Store
+Thumbs.db

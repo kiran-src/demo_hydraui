@@ -1,0 +1,8 @@
+{
+    "projects": {
+        "default": "qot-hyperautomation"
+    },
+    "targets": {},
+    "etags": {},
+    "dataconnectEmulatorConfig": {}
+}

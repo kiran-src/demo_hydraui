@@ -10,7 +10,6 @@ import {
   Platform,
   _isNumberValue
 } from "./chunk-E3OGXLVR.js";
-import "./chunk-CJNMZQC3.js";
 import {
   DataSource,
   _DisposeViewRepeaterStrategy,
@@ -19,6 +18,7 @@ import {
   _ViewRepeaterOperation,
   isDataSource
 } from "./chunk-7I6II3U3.js";
+import "./chunk-CJNMZQC3.js";
 import {
   DOCUMENT
 } from "./chunk-GQZ4FHHY.js";

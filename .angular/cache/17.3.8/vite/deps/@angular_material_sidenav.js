@@ -23,11 +23,11 @@ import {
   coerceBooleanProperty,
   coerceNumberProperty
 } from "./chunk-E3OGXLVR.js";
+import "./chunk-7I6II3U3.js";
 import {
   ESCAPE,
   hasModifierKey
 } from "./chunk-CJNMZQC3.js";
-import "./chunk-7I6II3U3.js";
 import {
   DOCUMENT
 } from "./chunk-GQZ4FHHY.js";
