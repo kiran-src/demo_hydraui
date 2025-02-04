@@ -6,7 +6,7 @@
         "start": "ts-node server.ts",
         "build-deploy": "npm run build && npm run deploy && npm run git",
         "git": "git add . && git commit -m 'setup pack.json' && git push",
-        "build": "ng build --configuration production --aot --output-hashing=all --optimization=true",
+        "build": "npm install -g @angular/cli && ng build --configuration production --aot --output-hashing=all --optimization=true",
         "deploy": "firebase deploy",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
@@ -61,7 +61,7 @@
         "zone.js": "~0.14.3"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "^17.2.2",
+        "@angular-devkit/build-angular": "^17.3.8",
         "@angular/cli": "^17.2.2",
         "@angular/compiler-cli": "^17.2.0",
         "@ionic/angular-toolkit": "^12.1.1",
