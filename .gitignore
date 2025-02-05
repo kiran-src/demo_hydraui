@@ -1,14 +1,42 @@
-# Ignore the dist folder
-dist/
-dist.zip
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Node modules (common in JavaScript projects)
-node_modules/
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
-# Angular cache and build artifacts
-.angular/
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
 
-# IDE and OS-specific files
-.vscode/
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
 .DS_Store
 Thumbs.db

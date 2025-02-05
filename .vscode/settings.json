@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/08b6eaf5-6472-4f76-9941-46721367e96c/resourceGroups/hydra_demo_resource/providers/Microsoft.Web/sites/hydraqot",
+    "appService.deploySubpath": "dist/qot/browser",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}

@@ -24,7 +24,7 @@
             "ES2022",
             "dom"
         ],
-        "types": ["d3", "node"],
+        "types": ["d3"],
     "typeRoots": ["node_modules/@types", "src"]
     },
     "angularCompilerOptions": {
