@@ -1,12 +1,12 @@
 {
     "/api": {
-      "target": "https://primary:pzkjD8kjujDbj6DmT1tqkNi4hr28v8gKewpdxn4xNsTdCRfGED5vh5YevgYzMU0T@hydraspring.test.azuremicroservices.io/apibackend/default",
+      "target": "https://murmuring-cliffs-65249-425cf5a71d91.herokuapp.com/apibackend/default",
       "secure": false,
       "changeOrigin": true
     },
     
     "/jenkins": {
-        "target": "http://localhost:8080",
+        "target": "https://murmuring-cliffs-65249-425cf5a71d91.herokuapp.com/",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug",
