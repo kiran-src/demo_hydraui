@@ -13,8 +13,7 @@
         "clean": "Remove-Item -Recurse -Force node_modules, dist, .angular",
         "serve:ssr:qot": "node dist/qot/server/server.mjs",
         "build:prod": "ng build --configuration production --base-href /",
-        "postbuild:prod": "cd dist && zip -r ../dist.zip .",
-        "heroku-postbuild": "cd dist && zip -r ../dist.zip ."
+        "postbuild:prod": "cd dist && zip -r ../dist.zip ."
     },
     "private": true,
     "dependencies": {
